@@ -1,0 +1,10 @@
+*~
+*.o
+*.png
+*.csv
+oiko-threads
+.DS_Store
+.DS_Store?
+.Trashes
+private/*
+Thumbs.db

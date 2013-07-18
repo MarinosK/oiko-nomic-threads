@@ -1,0 +1,24 @@
+** TO-DO FILE **
+
+Oiko-nomic Threads 
+installation for algorithmically controlled knitting machine and open data 
+(c) Athens 2013 Marinos Koutsomichalis, Maria Varela, Afroditi Psara
+
+
+HARDWARE 
+- install encoders/sensors
+- re-design/install PCB
+- work-out a solution with the stepper in order to automate the K-carriage movement
+
+
+ARDUINO
+- encode on line of data to the proper solenoid instructions according to the position of the K-carriage so that it is possible to knit an actual line of data 
+- develop some kind of API and set-up serial communication 
+
+
+Oiko-Threads App
+- clean up and optimize code
+- fix a bug on pattern encoding 
+- develop a class that will take care of sending the appropriate data to the arduino for knitting
+- design a class that would synchronize everything (data-retreival, encoding, sending over serial, knitting, waiting, etc)
+- update the Pattern::distribute function and the data.h/cpp so that the distribution is based on some sort of meta-data rather than random-numbers
