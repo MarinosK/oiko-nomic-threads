@@ -63,7 +63,3 @@ General Information:
 * of invaluable help has been PCB designs and instructions ditributed by the Knitic Project (https://github.com/mcanet/knitic) (with thanks)
 Instructions/Implementation
 * [..to be edited ]
-
-
-ACKNOWELEDGEMENTS:
-Daphne Dragona, Tina Panti, Daphne Vitali,Thanos Eleftherakos, the Knitic Project.
