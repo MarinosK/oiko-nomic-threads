@@ -1,0 +1,32 @@
+// digital pin 2 has an IR sensor attached to it
+int pushButton = 2;
+
+int counter = 0;
+int buttonState = 0;
+int oldButtonState;
+
+void setup() {
+  // initialize serial communication at 9600 bits per second:
+  Serial.begin(9600);
+  // make theIR sensor an input:
+  pinMode(pushButton, INPUT);
+}
+
+// the loop routine runs over and over again forever:
+void loop() {
+  
+  interrupts();
+  // read the input pin:
+  oldButtonState = buttonState;
+  buttonState = digitalRead(pushButton);
+
+  if (((oldButtonState == 0) && (buttonState ==1)) || ((oldButtonState == 1) && (buttonState ==0))) {
+    counter++;
+    Serial.print("buttonState: ");
+    Serial.print(buttonState);
+    Serial.print("\t counter: ");
+    Serial.println(counter);
+  }
+
+  delayMicroseconds(20);        // delay in between reads for stability
+}
