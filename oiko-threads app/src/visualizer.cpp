@@ -5,13 +5,14 @@
 
 #include "visualizer.h"
 
-// constructor
+// ============================= Constructor ============================== 
 Visualizer::Visualizer() :
   stillsIndex(0)
 {
   cv::namedWindow( "Oiko-nomic Threads: Display window");
 }
 
+// ============================= animate ============================== 
 void Visualizer::animate(Pattern &pattern) { // not yet implemented !
   unsigned int height = WIDTH * 3;
   cv::Mat mat(height, WIDTH, CV_8UC3, cv::Scalar(0,0,255));
@@ -41,6 +42,7 @@ void Visualizer::animate(Pattern &pattern) { // not yet implemented !
   }
 }
 
+// ============================= still ============================== 
 void Visualizer::still(Pattern &pattern, int lines) {
   cv::Mat mat(lines, WIDTH, CV_8UC3, cv::Scalar(255,0,0));
   for (int i=0; i<=lines; i++) {
@@ -58,6 +60,7 @@ void Visualizer::still(Pattern &pattern, int lines) {
   cv::waitKey(0);  
 }
 
+// ============================= exportStill ============================== 
 void Visualizer::exportStill(Pattern &pattern, int lines) {
   cv::Mat mat(lines, WIDTH, CV_8UC3, cv::Scalar(0,0,255));
   for (int i=0; i<=lines; i++) {
@@ -79,16 +82,19 @@ void Visualizer::exportStill(Pattern &pattern, int lines) {
   stillsIndex++;
 }
 
+// ============================= clean ============================== 
 void Visualizer::clean() {
   cv::destroyAllWindows();
 }
 
+// ============================= test ============================== 
 void Visualizer::test(cv::Mat image) {
   cv::namedWindow( "Test");
   cv::imshow( "Test", image);
   cv::waitKey(0);  
 }
 
+// ============================= getCurrentDate ============================== 
 std::string Visualizer::getCurrentDate() {
   time_t t;
   time(&t);

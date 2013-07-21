@@ -1,7 +1,7 @@
 
 #include "pattern.h"
 
-// ------------------------- constructor ----------------------------- 
+// ============================= constructor ============================== 
 Pattern::Pattern(): 
   // init list
   mData(), // Data object
@@ -12,7 +12,7 @@ Pattern::Pattern():
   // nothing here
 }
 
-// ------------------------- set up ----------------------------- 
+// ============================= setUp ============================== 
 void Pattern::setUp() {
   // update mPaths vector with the right mPaths (read from settings.h)
   mPaths.push_back(PATTERN0);
@@ -41,7 +41,7 @@ void Pattern::setUp() {
   std::srand( (unsigned) std::time(NULL) ); 
 }
 
-// ------------------------- nextLine  ----------------------------- 
+// ============================= nextLine ============================== 
 cv::Mat Pattern::nextLine() {
   if (mPatterns.empty()) {   // the first time
     
@@ -156,7 +156,7 @@ cv::Mat Pattern::nextLine() {
   return mOutput;
 }
 
-// ------------------------- nextEntry  ----------------------------- 
+// ============================= nextEntry ============================== 
 int Pattern::nextEntry() {
   int result;
   if (!mEntryFlag) {
@@ -170,7 +170,7 @@ int Pattern::nextEntry() {
   return result;
 }
 
-// ------------------------- encode  ----------------------------- 
+// ============================= encode ============================== 
 std::vector<cv::Mat> Pattern::encode(int number) {
   // count digits and call distribute()
   int number_of_digits = (int)log10(number) + 1;
@@ -208,7 +208,7 @@ std::vector<cv::Mat> Pattern::encode(int number) {
   return result;
 }
 
-// ------------------------- distribute  ----------------------------- 
+// ============================= distribute ============================== 
 std::vector<unsigned int> Pattern::distribute(int parts) {
   int sum = WIDTH;
   std::vector<unsigned int> result;

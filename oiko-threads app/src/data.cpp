@@ -1,7 +1,7 @@
 
 #include "data.h"
 
-// constructor 
+// ============================= Constructor ============================== 
 Data::Data() :
   // init list
   pointer(0)
@@ -9,6 +9,7 @@ Data::Data() :
   // nothing here
 }
 
+// ============================= setUp ============================== 
 void Data::setUp() {
   // open file
   std::ifstream myfile (FILENAME, std::ios::in | std::ios::ate);
@@ -19,13 +20,14 @@ void Data::setUp() {
   }
 }
 
+// ============================= nextEntry ============================== 
 Entry Data::nextEntry() {;
   std::string rawDate; 
   std::string rawAmount;
   Entry entry;
   std::ifstream myfile (FILENAME, std::ios::in);      // open file 
   if (myfile.is_open()) {
-    myfile.seekg (pointer, std::ios::beg);	        // set pointer to next entry
+    myfile.seekg (pointer, std::ios::beg);	    // set pointer to next entry
     char next;
     // read date
     while(myfile.get(next)) {
