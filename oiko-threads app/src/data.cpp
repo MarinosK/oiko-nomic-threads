@@ -1,6 +1,14 @@
 
 #include "data.h"
 
+// constructor 
+Data::Data() :
+  // init list
+  pointer(0)
+{
+  // nothing here
+}
+
 void Data::setUp() {
   // open file
   std::ifstream myfile (FILENAME, std::ios::in | std::ios::ate);
@@ -9,8 +17,6 @@ void Data::setUp() {
     end = myfile.tellg();
     myfile.close();
   }
-  // set pointer
-  pointer = 0;
 }
 
 Entry Data::nextEntry() {;

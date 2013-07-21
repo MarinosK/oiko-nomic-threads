@@ -1,6 +1,18 @@
 
 #include "pattern.h"
 
+// ------------------------- constructor ----------------------------- 
+Pattern::Pattern(): 
+  // init list
+  mData(), // Data object
+  mOutput(1,WIDTH,CV_8UC1),   // output Mat
+  mRowIndex(0), // mRowIndex
+  mEntryFlag(false) // mMEntryFlag
+{
+  // nothing here
+}
+
+// ------------------------- set up ----------------------------- 
 void Pattern::setUp() {
   // update mPaths vector with the right mPaths (read from settings.h)
   mPaths.push_back(PATTERN0);
@@ -25,18 +37,14 @@ void Pattern::setUp() {
   }
   // setUp mData retreiving
   mData.setUp();
-  // create the output Mat
-  mOutput = cv::Mat(1,WIDTH,CV_8UC1);
-  // initiallize mRowIndex
-  mRowIndex = 0;
-  // initiallize mMEntryFlag
-  mEntryFlag = false;
   // initialize random seed
   std::srand( (unsigned) std::time(NULL) ); 
 }
 
+// ------------------------- nextLine  ----------------------------- 
 cv::Mat Pattern::nextLine() {
   if (mPatterns.empty()) {   // the first time
+    
     int nextValue = nextEntry();
     mPatterns = encode(nextValue);
       
@@ -48,7 +56,7 @@ cv::Mat Pattern::nextLine() {
       for (int i = 0; i < cols; i++) {
 	mOutput.at<uchar>(0, widthOffset + i) = it->at<uchar>(mRowIndex,i);
       }
-      widthOffset += it->cols;
+      widthOffset += cols;
     }
 
     mRowIndex += 1;
@@ -63,8 +71,9 @@ cv::Mat Pattern::nextLine() {
       for (int i = 0; i < cols; i++) {
 	mOutput.at<uchar>(0, widthOffset + i) = it->at<uchar>(mRowIndex,i);
       }
-      widthOffset += it->cols;
+      widthOffset += cols;
     }
+
     mRowIndex += 1;
 
   } else { 
@@ -85,31 +94,28 @@ cv::Mat Pattern::nextLine() {
 
     // put all non-printed parts of mPatterns into one cv::Mat
     unsigned int height = maxHeight - minHeight;
-    cv::Mat oldPattern(height, WIDTH,CV_8UC1, cv::Scalar(255));
-    
+    cv::Mat oldPattern(height, WIDTH, CV_8UC1, cv::Scalar(0));
     for (std::vector<cv::Mat>::iterator it = mPatterns.begin() ; 
-	 it != mPatterns.end(); ++it) {
+  	 it != mPatterns.end(); ++it) {
       if (it->rows > minHeight) {
-      // 	unsigned int cols = it->cols;
-      // 	unsigned int rows = it->rows - minHeight;
-      // 	for (int i = 0; i < rows; i++) {
-      // 	  for (int j = 0; j < cols; j++) {
-      // 	    oldPattern.at<uchar>(i, widthOffset + j) = it->at<uchar>(i+minHeight,j);
-      // 	  }
-      // 	} 
-      cv::Mat roiNew, roiOld;
-      int wi, he;
-      wi = it->cols;
-      he = (it->rows) - minHeight;
-      roiNew = oldPattern(cv::Rect(widthOffset,0,wi,he));
-      roiOld = (*it)(cv::Rect(0,minHeight,wi,he));
-      roiOld.copyTo(roiNew);
-      widthOffset += it->cols;
+  	cv::Mat roiNew, roiOld;
+  	unsigned int wi, he;
+  	wi = it->cols;
+  	he = (it->rows) - minHeight;
+  	roiNew = oldPattern(cv::Rect(widthOffset,0,wi,he));
+  	roiOld = (*it)(cv::Rect(0,minHeight,wi,he));
+  	roiOld.copyTo(roiNew);
+  	widthOffset += wi;
+      } else {
+  	unsigned int wi = it->cols;
+  	widthOffset += wi;
       }
     }
 
     // test oldPattern
     // cv::namedWindow( "Test");
+    // cv::Mat mat = oldPattern;
+    // cv::resize(mat,mat,cv::Size(0,0),3,3);
     // cv::imshow( "Test", oldPattern);
     // cv::waitKey(0);  
 
@@ -125,11 +131,8 @@ cv::Mat Pattern::nextLine() {
       cv::Mat dst, src, result;	// define rois
       src = oldPattern(cv::Rect(widthOffset,0,it->cols, patHeight));
       dst = (*it)(cv::Rect(0,0,it->cols,patHeight));
-      // maybe there is a fastest way to calculate this ??
-      cv::threshold( src, src, 128, 255, cv::THRESH_BINARY_INV); // invert 
-      cv::threshold( dst, dst, 128, 255, cv::THRESH_BINARY_INV); // invert 
+      // add
       cv::add(dst,src,dst);  
-      cv::threshold( dst, dst, 128, 255, cv::THRESH_BINARY_INV); // invert 
       mPatterns.push_back(*it);
       widthOffset += it->cols;
     }
@@ -142,17 +145,18 @@ cv::Mat Pattern::nextLine() {
       for (int i = 0; i < cols; i++) {
     	mOutput.at<uchar>(0, widthOffset + i) = it->at<uchar>(mRowIndex,i);
       }
-      widthOffset += it->cols;
+      widthOffset += cols;
     }
+
     mRowIndex += 1;
-
-    // mPatterns = nextPatterns;
-
   }
-  
+
+  // INVERT & THRESHOLD
+  cv::threshold( mOutput, mOutput, 128, 255, cv::THRESH_BINARY_INV);
   return mOutput;
 }
 
+// ------------------------- nextEntry  ----------------------------- 
 int Pattern::nextEntry() {
   int result;
   if (!mEntryFlag) {
@@ -166,39 +170,36 @@ int Pattern::nextEntry() {
   return result;
 }
 
+// ------------------------- encode  ----------------------------- 
 std::vector<cv::Mat> Pattern::encode(int number) {
   // count digits and call distribute()
   int number_of_digits = (int)log10(number) + 1;
   std::vector<unsigned int> widths;
   widths = distribute(number_of_digits);
 
-  // read each digit and fill vector with mOriginals according to entry
-  std::vector<cv::Mat> draftPattern;
+  // this vector will hold all heights so as to calculate the mChangeIndex and the mMaxHeight
+  std::vector<unsigned int> heights;
+
+  // read each digit and fill vector with *inverted* mOriginals according to entry
+  std::vector<cv::Mat> result;
   std::string str = boost::lexical_cast<std::string>(number); // convert to string
   for( int i = 0; i < number_of_digits; i++ ) {
     int index =  boost::lexical_cast<int>(str[i]);
     cv::Mat pat = mOriginals[index];
-    draftPattern.push_back(pat);
-  }
-  
-  // this vector will hold all heights so as to calculate the mChangeIndex and the mMaxHeight
-  std::vector<unsigned int> heights;
-
-  // scale images
-  std::vector<cv::Mat> result;
-  for( int i = 0; i < number_of_digits; i++ ) {
-    cv::Mat src;
-    draftPattern[i].copyTo(src);
+    // scale 
     unsigned int x,y;
     x = widths[i];
-    double f = (double) x / (double) src.cols;
-    y = (unsigned int) (src.rows * f);
+    double f = static_cast<double>(x) / static_cast<double>(pat.cols);
+    y = static_cast<unsigned int>(pat.rows * f);
     cv::Size size(x,y);
-    cv::resize(src, src, size);
-    result.push_back(src);
+    cv::resize(pat, pat, size);
+    // invert
+    cv::threshold( pat, pat, 128, 255, cv::THRESH_BINARY_INV); 
+    // push_back
+    result.push_back(pat);
     // push_back height
-    heights.push_back(src.rows);
-  }  
+    heights.push_back(pat.rows);
+  }
 
   // calculate mChangeIndex (minHeight) and mMaxHeight
   mChangeIndex = *std::min_element(heights.begin(), heights.end());
@@ -207,6 +208,7 @@ std::vector<cv::Mat> Pattern::encode(int number) {
   return result;
 }
 
+// ------------------------- distribute  ----------------------------- 
 std::vector<unsigned int> Pattern::distribute(int parts) {
   int sum = WIDTH;
   std::vector<unsigned int> result;

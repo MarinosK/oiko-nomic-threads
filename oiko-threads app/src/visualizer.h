@@ -20,6 +20,8 @@
 
 class Visualizer {
  public:
+  Visualizer();
+  // ~visualizer();
   void setUp();
   void animate(Pattern &pattern);
   void still(Pattern &pattern, int lines);    	// display mats with highGUI

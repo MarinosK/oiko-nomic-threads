@@ -27,6 +27,7 @@ struct Entry {
 
 class Data {
  public:
+  Data();
   void setUp();
   Entry nextEntry();
  private:

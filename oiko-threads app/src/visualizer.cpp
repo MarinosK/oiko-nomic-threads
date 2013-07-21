@@ -5,9 +5,11 @@
 
 #include "visualizer.h"
 
-void Visualizer::setUp() {
+// constructor
+Visualizer::Visualizer() :
+  stillsIndex(0)
+{
   cv::namedWindow( "Oiko-nomic Threads: Display window");
-  stillsIndex = 0;
 }
 
 void Visualizer::animate(Pattern &pattern) { // not yet implemented !
