@@ -27,7 +27,7 @@ class Data {
  public:
   friend class Pattern;
  private:
-  Data();
+  explicit Data();
   void setUp();
   Entry nextEntry();
   long pointer;		// the position of the next piece of data

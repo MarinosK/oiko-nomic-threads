@@ -20,7 +20,7 @@
 
 class Visualizer {
  public:
-  Visualizer();
+  explicit Visualizer();
   // ~visualizer();
   void setUp();
   void animate(Pattern &pattern);

@@ -24,7 +24,7 @@
 
 class Pattern {
  public:
-  Pattern();
+  explicit Pattern();
   void setUp();
   cv::Mat nextLine();		   // retrieves data, encodes them and outputes next line for displaying/knitting
  private:
