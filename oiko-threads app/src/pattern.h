@@ -28,6 +28,8 @@ class Pattern {
   void setUp();
   cv::Mat nextLine();		   // retrieves data, encodes them and outputes next line for displaying/knitting
  private:
+  Pattern(const Pattern &pattern); // private copy ctor to disable copying
+  Pattern& operator=(const Pattern &pattern); // private assignment operator
   cv::Mat mOutput;		   // the output line (nextLine() returns this)
   unsigned int mRowIndex;	   // counts the rows so as to re-encode patterns once the end of some item is reached
   unsigned int mMaxHeight;	   // the maximum height a pattern has - used to calculate the height of the destination pattern

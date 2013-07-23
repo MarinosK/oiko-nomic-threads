@@ -29,6 +29,8 @@ class Visualizer {
   void test(cv::Mat);				// display matrix		
   void clean();
  private:
+  Visualizer(const Visualizer &visualizer); // private copy ctor to disable copying
+  Visualizer& operator=(const Visualizer &visualizer); // private assignment operator
   cv::Mat mImage;
   std::string getCurrentDate();     // return current date (used to name Stills)
   unsigned int stillsIndex;	    // an index for the stills 
