@@ -5,38 +5,58 @@
 Pattern::Pattern(): 
   // init list
   mData(), // Data object
-  mOutput(1,WIDTH,CV_8UC1),   // output Mat
+  mOutput(1,settings::width,CV_8UC1),   // output Mat
   mRowIndex(0), // mRowIndex
+  mMaxHeight(1),
+  mChangeIndex(1),
+  mOriginals(),
+  mPatterns(),
+  mPaths({settings::pattern0,settings::pattern1,settings::pattern2,settings::pattern3,settings::pattern4,settings::pattern5,settings::pattern6,settings::pattern7,settings::pattern8,settings::pattern9}),
+  mEntry(),
   mEntryFlag(false) // mMEntryFlag
 {
-  // nothing here
+  mEntry.date = 0;
+  mEntry.amount = 0;
 }
 
 // ============================= setUp ============================== 
 void Pattern::setUp() {
   // update mPaths vector with the right mPaths (read from settings.h)
-  mPaths.push_back(PATTERN0);
-  mPaths.push_back(PATTERN1);
-  mPaths.push_back(PATTERN2);
-  mPaths.push_back(PATTERN3);
-  mPaths.push_back(PATTERN4);
-  mPaths.push_back(PATTERN5);
-  mPaths.push_back(PATTERN6);
-  mPaths.push_back(PATTERN7);
-  mPaths.push_back(PATTERN8);
-  mPaths.push_back(PATTERN9);
+  // mPaths.push_back(settings::pattern0);
+  // mPaths.push_back(settings::pattern1);
+  // mPaths.push_back(settings::pattern2);
+  // mPaths.push_back(settings::pattern3);
+  // mPaths.push_back(settings::pattern4);
+  // mPaths.push_back(settings::pattern5);
+  // mPaths.push_back(settings::pattern6);
+  // mPaths.push_back(settings::pattern7);
+  // mPaths.push_back(settings::pattern8);
+  // mPaths.push_back(settings::pattern9);
   // read images from hard disc and store them to mOriginals' vector
-  for (int i=0; i<=9; i++) {
+
+  for (std::vector<std::string>::iterator it = mPaths.begin() ; it != mPaths.end(); ++it) {
     cv::Mat image,binaryImage;
-    image = cv::imread(mPaths[i],0);
-    if (!image.data) { // check if loaded
-      std::cout << "Error: pattern image " << mPaths[i] << " could not be opened" << std::endl; }
+    image = cv::imread(*it,0);
+    if (!image.data)  // check if loaded
+      std::cout << "Error: pattern image " << *it << " could not be opened" << std::endl; 
     // apply threashold to make images binary
     cv::threshold(image, binaryImage, 100, 255, cv::THRESH_BINARY);
-    mOriginals.push_back( binaryImage);
+    mOriginals.push_back(binaryImage);
   }
+
+  // for (int i=0; i<=9; i++) {
+  //   cv::Mat image,binaryImage;
+  //   image = cv::imread(mPaths[i],0);
+  //   if (!image.data) { // check if loaded
+  //     std::cout << "Error: pattern image " << mPaths[i] << " could not be opened" << std::endl; }
+  //   // apply threashold to make images binary
+  //   cv::threshold(image, binaryImage, 100, 255, cv::THRESH_BINARY);
+  //   mOriginals.push_back( binaryImage);
+  // }
+
   // setUp mData retreiving
   mData.setUp();
+  
   // initialize random seed
   std::srand( (unsigned) std::time(NULL) ); 
 }
@@ -50,6 +70,7 @@ cv::Mat Pattern::nextLine() {
       
     // read one line from all patterns and copy it to mOutput
     int widthOffset = 0;
+
     for (std::vector<cv::Mat>::iterator it = mPatterns.begin() ; 
 	 it != mPatterns.end(); ++it) {
       int cols = it->cols;
@@ -94,7 +115,7 @@ cv::Mat Pattern::nextLine() {
 
     // put all non-printed parts of mPatterns into one cv::Mat
     unsigned int height = maxHeight - minHeight;
-    cv::Mat oldPattern(height, WIDTH, CV_8UC1, cv::Scalar(0));
+    cv::Mat oldPattern(height, settings::width, CV_8UC1, cv::Scalar(0));
     for (std::vector<cv::Mat>::iterator it = mPatterns.begin() ; 
   	 it != mPatterns.end(); ++it) {
       if (it->rows > minHeight) {
@@ -210,7 +231,7 @@ std::vector<cv::Mat> Pattern::encode(int number) {
 
 // ============================= distribute ============================== 
 std::vector<unsigned int> Pattern::distribute(int parts) {
-  int sum = WIDTH;
+  int sum = settings::width;
   std::vector<unsigned int> result;
   for (int i = parts; i>0; i--) {
     if (i != 1) {

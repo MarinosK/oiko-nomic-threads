@@ -18,20 +18,23 @@
 
 #include "pattern.h"
 
+#include "mar_utils.h"
+
 class Visualizer {
+private:
+  cv::Mat mImage;		    // matrix to update for animation
+  unsigned int mLineHeight;   // factor to calculate resizing (for animation)
+  unsigned int mWidth, mHeight;       // width and height..
+  unsigned int mStillsIndex;	    // an index for the stills 
+  std::string getCurrentDate();     // return current date (used to name Stills)
  public:
-  explicit Visualizer();
-  // ~visualizer();
-  void setUp();
-  void animate(Pattern &pattern);
+  explicit Visualizer(); // ctor
+  explicit Visualizer(const unsigned int width, const unsigned int height); // ctor
+  ~Visualizer();  // dtor
+  Visualizer(const Visualizer&) =delete;
+  Visualizer& operator=(const Visualizer&) =delete; 
+  void animate(const cv::Mat &mat);
   void still(Pattern &pattern, int lines);    	// display mats with highGUI
   void exportStill(Pattern &pattern, int lines );
-  void test(cv::Mat);				// display matrix		
-  void clean();
- private:
-  Visualizer(const Visualizer &visualizer); // private copy ctor to disable copying
-  Visualizer& operator=(const Visualizer &visualizer); // private assignment operator
-  cv::Mat mImage;
-  std::string getCurrentDate();     // return current date (used to name Stills)
-  unsigned int stillsIndex;	    // an index for the stills 
+  void test(cv::Mat);				// display matrix	   
 };

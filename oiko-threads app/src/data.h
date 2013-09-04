@@ -18,6 +18,8 @@ coded by Marinos Koutsomichalis (c) 2013, Heraklion
 
 #include "settings.h"
 
+#include "mar_utils.h"
+
 struct Entry {
   unsigned int date;
   unsigned int amount;
@@ -25,11 +27,16 @@ struct Entry {
 
 class Data {
  public:
-  friend class Pattern;
+  friend class Pattern; // only members of Pattern may access this class
+  Data(const Data&) =delete;
+  Data& operator=(const Data&) =delete;
+  ~Data() =default;
  private:
-  explicit Data();
-  void setUp();
-  Entry nextEntry();
+  // data
   long pointer;		// the position of the next piece of data
   unsigned long end;	// end of the file
+  // functions
+  explicit Data();      // private constructor
+  void setUp();
+  Entry nextEntry();
 };

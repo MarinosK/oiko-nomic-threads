@@ -5,46 +5,55 @@
 
 #include "visualizer.h"
 
-// ============================= Constructor ============================== 
+// ============================= Constructors ===========================
 Visualizer::Visualizer() :
-  stillsIndex(0)
+  mStillsIndex(0),
+  mWidth(settings::width * 3),
+  mHeight(settings::width * 3),
+  mLineHeight(1),
+  mImage(cv::Mat(mHeight, mWidth, CV_8UC1,cv::Scalar(0)))
 {
   cv::namedWindow( "Oiko-nomic Threads: Display window");
 }
 
+Visualizer::Visualizer(const unsigned int mWidth_, const unsigned int mHeight_) :
+  mStillsIndex(0),
+  mWidth(mWidth_),
+  mHeight(mHeight_),
+  mLineHeight(static_cast<unsigned int>(mHeight * static_cast<double>(mWidth) / static_cast<double>(settings::width))),
+  mImage(cv::Mat(mHeight, mWidth, CV_8UC1,cv::Scalar(0)))
+{
+  cv::namedWindow( "Oiko-nomic Threads: Display window");
+}
+
+// ============================= Dtor ============================== 
+Visualizer::~Visualizer() {
+  cv::destroyAllWindows();
+}
+
 // ============================= animate ============================== 
-void Visualizer::animate(Pattern &pattern) { // not yet implemented !
-  unsigned int height = WIDTH * 3;
-  cv::Mat mat(height, WIDTH, CV_8UC3, cv::Scalar(0,0,255));
-  unsigned int lineIndex = 0;
-  
-  // first screen
-  for (int i=0; i<=height; i++) {
-    cv::Mat line = pattern.nextLine();
-    for (int j = 0; j < line.cols; j++) {
-      mat.at<cv::Vec3b>(i, j)[1] = line.at<uchar>(0,j);
-    }
+void Visualizer::animate(const cv::Mat &mat) { 
 
-    while(true) {
-      
-      // delete first line and move everything one line up
+  // copy and resize matrix
+  cv::Mat matrix;
+  mat.copyTo(matrix);
+  cv::resize(matrix,matrix,cv::Size( mWidth, mLineHeight));
 
-      // add last line
-      for (int j = 0; j < WIDTH; j++) {
-	cv::Mat line = pattern.nextLine();
-	mat.at<cv::Vec3b>(height,j)[1] = line.at<uchar>(0,j);
-      }
-      cv::resize(mat,mat,cv::Size(0,0),3,3);
-      cv::imshow( "Oiko-nomic Threads: Display window", mat );
-      // wait time somehow !!!
-      
-    }
-  }
+  // std::cout << mImage.rows << " " << mHeight << " " << resizeFactor << std::endl;
+
+  // delete first mLineHeight lines
+
+  // pushback line
+  mImage.push_back(matrix);
+
+  // update display
+  cv::imshow( "Oiko-nomic Threads: Display window", mImage );
 }
 
 // ============================= still ============================== 
 void Visualizer::still(Pattern &pattern, int lines) {
-  cv::Mat mat(lines, WIDTH, CV_8UC3, cv::Scalar(255,0,0));
+  cv::Mat mat(lines, settings::width, CV_8UC3, cv::Scalar(255,0,0));
+
   for (int i=0; i<=lines; i++) {
     cv::Mat line = pattern.nextLine();
     for (int j = 0; j < line.cols; j++) {
@@ -62,7 +71,7 @@ void Visualizer::still(Pattern &pattern, int lines) {
 
 // ============================= exportStill ============================== 
 void Visualizer::exportStill(Pattern &pattern, int lines) {
-  cv::Mat mat(lines, WIDTH, CV_8UC3, cv::Scalar(0,0,255));
+  cv::Mat mat(lines, settings::width, CV_8UC3, cv::Scalar(0,0,255));
   for (int i=0; i<=lines; i++) {
     cv::Mat line = pattern.nextLine();
     for (int j = 0; j < line.cols; j++) {
@@ -72,19 +81,14 @@ void Visualizer::exportStill(Pattern &pattern, int lines) {
   
   // save
   std::string date = getCurrentDate();
-  std::string index = boost::lexical_cast<std::string>(stillsIndex);
+  std::string index = boost::lexical_cast<std::string>(mStillsIndex);
   std::string path = "stills/still " ;
   path.append(date);
   path.append(index);
   path.append(".tiff");
   cv::imwrite(path, mat);
 
-  stillsIndex++;
-}
-
-// ============================= clean ============================== 
-void Visualizer::clean() {
-  cv::destroyAllWindows();
+  mStillsIndex++;
 }
 
 // ============================= test ============================== 

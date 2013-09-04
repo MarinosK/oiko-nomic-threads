@@ -4,7 +4,8 @@
 // ============================= Constructor ============================== 
 Data::Data() :
   // init list
-  pointer(0)
+  pointer(0),
+  end(0)
 {
   // nothing here
 }
@@ -12,7 +13,7 @@ Data::Data() :
 // ============================= setUp ============================== 
 void Data::setUp() {
   // open file
-  std::ifstream myfile (FILENAME, std::ios::in | std::ios::ate);
+  std::ifstream myfile (settings::filename, std::ios::in | std::ios::ate);
   if (myfile.is_open()) {
     // calculate end of file
     end = myfile.tellg();
@@ -25,7 +26,7 @@ Entry Data::nextEntry() {;
   std::string rawDate; 
   std::string rawAmount;
   Entry entry;
-  std::ifstream myfile (FILENAME, std::ios::in);      // open file 
+  std::ifstream myfile (settings::filename, std::ios::in);      // open file 
   if (myfile.is_open()) {
     myfile.seekg (pointer, std::ios::beg);	    // set pointer to next entry
     char next;
@@ -37,7 +38,7 @@ Entry Data::nextEntry() {;
 	break;  
       }              
     }
-    entry.date = std::atoi(rawDate.c_str());
+    entry.date = std::stoi(rawDate.c_str());
     // read amount
     while(myfile.get(next)) {
       if (next != '\n')  {  
@@ -49,7 +50,7 @@ Entry Data::nextEntry() {;
 	break;  
       }              
     }
-    entry.amount = std::atoi(rawAmount.c_str());    
+    entry.amount = std::stoi(rawAmount.c_str());    
     myfile.close();		        // close file
   } else {
     std::cout << "Error: could not read entry from file - file not open" << std::endl;

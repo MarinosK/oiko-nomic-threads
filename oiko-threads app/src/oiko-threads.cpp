@@ -11,6 +11,8 @@
 #include "visualizer.h"
 #include "settings.h"
 
+#include "mar_utils.h"
+
 int main( int argc, char** argv ) {
 
   // preample credits
@@ -24,8 +26,19 @@ int main( int argc, char** argv ) {
   
   pattern.setUp();
 
-  for (int i=0; i<10; i++) visualizer->still(pattern, 200);  
-  visualizer->clean();
+  // Visualizer *visualizer = new Visualizer(settings::width * 2, settings::width * 2);
+
+  for (int i = 0; i<100; ++i) {
+    // next line
+    const cv::Mat nextLine = pattern.nextLine();
+    // animate nextline
+    visualizer->animate(nextLine);
+  }
+
+  // for (int i=0; i<10; i++) visualizer->still(pattern, 200);  
+  // visualizer->clean();
+  
+
   delete visualizer;
 
   // export stills
