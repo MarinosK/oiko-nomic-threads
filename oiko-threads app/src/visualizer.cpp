@@ -7,21 +7,21 @@
 
 // ============================= Constructors ===========================
 Visualizer::Visualizer() :
-  mStillsIndex(0),
-  mWidth(settings::width * 3),
-  mHeight(settings::width * 3),
+  mWidth( settings::width * 4),
+  mHeight( settings::width * 4),
   mLineHeight(1),
-  mImage(cv::Mat(mHeight, mWidth, CV_8UC1,cv::Scalar(0)))
+  mStillsIndex(0),
+  mImage(mHeight, mWidth, CV_8UC1, cv::Scalar(0))
 {
   cv::namedWindow( "Oiko-nomic Threads: Display window");
 }
 
 Visualizer::Visualizer(const unsigned int mWidth_, const unsigned int mHeight_) :
-  mStillsIndex(0),
   mWidth(mWidth_),
   mHeight(mHeight_),
   mLineHeight(static_cast<unsigned int>(mHeight * static_cast<double>(mWidth) / static_cast<double>(settings::width))),
-  mImage(cv::Mat(mHeight, mWidth, CV_8UC1,cv::Scalar(0)))
+  mStillsIndex(0),
+  mImage(mHeight, mWidth, CV_8UC1, cv::Scalar(0))
 {
   cv::namedWindow( "Oiko-nomic Threads: Display window");
 }
@@ -32,20 +32,22 @@ Visualizer::~Visualizer() {
 }
 
 // ============================= animate ============================== 
-void Visualizer::animate(const cv::Mat &mat) { 
+void Visualizer::animate(cv::Mat mat) { 
 
   // copy and resize matrix
-  cv::Mat matrix;
-  mat.copyTo(matrix);
-  cv::resize(matrix,matrix,cv::Size( mWidth, mLineHeight));
+  // cv::Mat matrix; //  = cv::Mat(mat);
+  // mat.copyTo(matrix);
+  cv::resize(mat,mat,cv::Size(mWidth, mLineHeight));
 
-  // std::cout << mImage.rows << " " << mHeight << " " << resizeFactor << std::endl;
+  std::cout << "Updating knitting emulation." << std::endl;
 
-  // delete first mLineHeight lines
-
-  // pushback line
-  mImage.push_back(matrix);
-
+  // move the whole image upwards
+  for (int i=0; i < (mImage.rows-1); ++i) {
+   mImage.row(i+1).copyTo(mImage.row(i));
+  }
+  // set last line
+  mat.row(0).copyTo(mImage.row(mImage.rows-1));
+  
   // update display
   cv::imshow( "Oiko-nomic Threads: Display window", mImage );
 }

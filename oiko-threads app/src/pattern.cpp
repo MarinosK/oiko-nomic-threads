@@ -1,10 +1,8 @@
 
 #include "pattern.h"
 
-// ============================= constructor ============================== 
-Pattern::Pattern(): 
-  // init list
-  mData(), // Data object
+// ============================= constructor ============================ 
+Pattern::Pattern() : 
   mOutput(1,settings::width,CV_8UC1),   // output Mat
   mRowIndex(0), // mRowIndex
   mMaxHeight(1),
@@ -12,6 +10,7 @@ Pattern::Pattern():
   mOriginals(),
   mPatterns(),
   mPaths({settings::pattern0,settings::pattern1,settings::pattern2,settings::pattern3,settings::pattern4,settings::pattern5,settings::pattern6,settings::pattern7,settings::pattern8,settings::pattern9}),
+  mData(), 
   mEntry(),
   mEntryFlag(false) // mMEntryFlag
 {
@@ -174,6 +173,11 @@ cv::Mat Pattern::nextLine() {
 
   // INVERT & THRESHOLD
   cv::threshold( mOutput, mOutput, 128, 255, cv::THRESH_BINARY_INV);
+  
+  // test output
+  // DEBUG_PRINT(mOutput.cols);
+  // DEBUG_PRINT(mOutput.rows);
+
   return mOutput;
 }
 

@@ -41,11 +41,11 @@ class Pattern {
   std::vector<unsigned int> distribute(int parts); // calculates the distribution of the numbers -> check README.md
   int random(int,int);	  // random numbers in a min/max range
  public:
-  explicit Pattern(); // explicit constructor
+  void setUp();
+  cv::Mat nextLine();	   // retrieves data, encodes them and outputes next line for displaying/knitting
+
+  explicit Pattern(); // explicit ctor
   Pattern(const Pattern&) =delete; 
   Pattern& operator=(const Pattern&) =delete;
   ~Pattern() =default;
-  void setUp();
-  cv::Mat nextLine();		   // retrieves data, encodes them and outputes next line for displaying/knitting
-
 };

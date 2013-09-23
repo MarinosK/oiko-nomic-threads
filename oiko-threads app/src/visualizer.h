@@ -22,10 +22,10 @@
 
 class Visualizer {
 private:
+  const int mWidth, mHeight;       // width and height..
+  const  int mLineHeight;   // factor to calculate resizing (for animation)
+  int mStillsIndex;	    // an index for the stills 
   cv::Mat mImage;		    // matrix to update for animation
-  unsigned int mLineHeight;   // factor to calculate resizing (for animation)
-  unsigned int mWidth, mHeight;       // width and height..
-  unsigned int mStillsIndex;	    // an index for the stills 
   std::string getCurrentDate();     // return current date (used to name Stills)
  public:
   explicit Visualizer(); // ctor
@@ -33,7 +33,8 @@ private:
   ~Visualizer();  // dtor
   Visualizer(const Visualizer&) =delete;
   Visualizer& operator=(const Visualizer&) =delete; 
-  void animate(const cv::Mat &mat);
+
+  void animate(cv::Mat mat);
   void still(Pattern &pattern, int lines);    	// display mats with highGUI
   void exportStill(Pattern &pattern, int lines );
   void test(cv::Mat);				// display matrix	   

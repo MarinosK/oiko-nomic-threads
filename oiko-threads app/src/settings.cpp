@@ -2,7 +2,7 @@
 #include "settings.h"
 
 
-const unsigned int settings::width =  192;
+const unsigned int settings::width =  160;
 const unsigned int settings::speed = 10;
 const char* const settings::filename = "data/PSGR.csv";  // the filename to use
 // selected patterns

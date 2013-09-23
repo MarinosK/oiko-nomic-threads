@@ -26,11 +26,6 @@ struct Entry {
 };
 
 class Data {
- public:
-  friend class Pattern; // only members of Pattern may access this class
-  Data(const Data&) =delete;
-  Data& operator=(const Data&) =delete;
-  ~Data() =default;
  private:
   // data
   long pointer;		// the position of the next piece of data
@@ -39,4 +34,9 @@ class Data {
   explicit Data();      // private constructor
   void setUp();
   Entry nextEntry();
+ public:
+  friend class Pattern; // members of Pattern may access this class
+  Data(const Data&) =delete;
+  Data& operator=(const Data&) =delete;
+  ~Data() =default;
 };
