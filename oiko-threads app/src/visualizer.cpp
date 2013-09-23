@@ -7,23 +7,23 @@
 
 // ============================= Constructors ===========================
 Visualizer::Visualizer() :
-  mWidth( settings::width * 4),
-  mHeight( settings::width * 4),
-  mLineHeight(1),
+  mWidth( settings::width * 8 ),
+  mHeight(settings::width * 5 ),
+  mLineHeight(mWidth/settings::width),
   mStillsIndex(0),
   mImage(mHeight, mWidth, CV_8UC1, cv::Scalar(0))
 {
-  cv::namedWindow( "Oiko-nomic Threads: Display window");
+  cv::namedWindow( "Oiko-nomic Threads: Knitting emulation.");
 }
 
 Visualizer::Visualizer(const unsigned int mWidth_, const unsigned int mHeight_) :
   mWidth(mWidth_),
   mHeight(mHeight_),
-  mLineHeight(static_cast<unsigned int>(mHeight * static_cast<double>(mWidth) / static_cast<double>(settings::width))),
+  mLineHeight(mWidth/settings::width),
   mStillsIndex(0),
   mImage(mHeight, mWidth, CV_8UC1, cv::Scalar(0))
 {
-  cv::namedWindow( "Oiko-nomic Threads: Display window");
+  cv::namedWindow( "Oiko-nomic Threads: Knitting emulation.");
 }
 
 // ============================= Dtor ============================== 
@@ -34,22 +34,25 @@ Visualizer::~Visualizer() {
 // ============================= animate ============================== 
 void Visualizer::animate(cv::Mat mat) { 
 
-  // copy and resize matrix
-  // cv::Mat matrix; //  = cv::Mat(mat);
-  // mat.copyTo(matrix);
-  cv::resize(mat,mat,cv::Size(mWidth, mLineHeight));
+  std::cout << "Updating knitting emulation." << std::endl; // post info
 
-  std::cout << "Updating knitting emulation." << std::endl;
+  cv::resize(mat,mat,cv::Size(mWidth, mLineHeight)); // reshize input
 
   // move the whole image upwards
-  for (int i=0; i < (mImage.rows-1); ++i) {
-   mImage.row(i+1).copyTo(mImage.row(i));
+  { // block for optimization
+    cv::Mat source = mImage(cv::Rect(0,mLineHeight,mWidth,mHeight - mLineHeight));
+    cv::Mat destination = mImage(cv::Rect(0,0,mWidth,mHeight - mLineHeight));
+    source.copyTo(destination);
   }
-  // set last line
-  mat.row(0).copyTo(mImage.row(mImage.rows-1));
+
+  // set new line
+ { // block for optimization
+  cv::Mat dstRoi = mImage(cv::Rect(0,mHeight-mLineHeight,mWidth,mLineHeight));
+  mat.copyTo(dstRoi);
+ }
   
   // update display
-  cv::imshow( "Oiko-nomic Threads: Display window", mImage );
+  cv::imshow( "Oiko-nomic Threads: Knitting emulation.", mImage );
 }
 
 // ============================= still ============================== 
@@ -100,7 +103,7 @@ void Visualizer::test(cv::Mat image) {
   cv::waitKey(0);  
 }
 
-// ============================= getCurrentDate ============================== 
+// ============================= getCurrentDate ========================
 std::string Visualizer::getCurrentDate() {
   time_t t;
   time(&t);

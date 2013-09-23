@@ -4,7 +4,7 @@
 */
 
 #include <iostream>
-// #include <thread>
+#include <thread>
 #include <atomic>
 
 #include "opencv2/opencv.hpp"
@@ -21,7 +21,7 @@ int main( int argc, char** argv ) {
   // preample credits
   std::cout << "\n*****\nOiko-nomic Threads \ninstallation for algorithmically controlled knitting machine and open data \n(c) 2013 Marinos Koutsomichalis, Maria Varela, Afroditi Psara\n*****\n" << std::endl;
 
-  std::cout << "press q at any time to quit !\n" << std::endl;
+  std::cout << "press q (and <return>) to quit.\n" << std::endl;
 
   std::cout << "starting..\n" << std::endl;
 
@@ -30,7 +30,7 @@ int main( int argc, char** argv ) {
   pattern->setUp();
 
   // setup visualizer
-  Visualizer *visualizer = new Visualizer;
+  Visualizer *visualizer = new Visualizer(settings::width * 8, settings::width * 5);
 
   // setup Controller
   Controller *arduino = new Controller;
@@ -40,10 +40,13 @@ int main( int argc, char** argv ) {
   std::atomic<bool> run(true); // flag to quit when q is pressed
 
   // lauch a new thread to upate run
-  // std::thread thread([&](){
-  //     std::cout << "running.." << std::endl;
-  //     sleep(1);
-  //   },std::ref(run));
+  std::thread thread([&](){
+      while(1) {
+	char input = std::cin.get();
+	if (input == 'q')  { run = false; }
+      }
+    });
+  thread.detach(); // detach thread
 
   // start retrieving lines
   while (run) {
@@ -59,10 +62,6 @@ int main( int argc, char** argv ) {
       std::cout << "Communication with the machine interrupted !" << std::endl;   
     }
   }
-  
-  // char input = std::cin.get();
-  // if (input == 'q')  run = false;
-  // thread.join();
 
   // for stills
   // for (int i=0; i<10; i++) visualizer->still(pattern, 200);  
