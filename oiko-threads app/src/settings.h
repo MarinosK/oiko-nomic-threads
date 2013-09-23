@@ -7,6 +7,18 @@
 
 #pragma once
 
+/* #include <iostream> */
+/* #include <cstdio> */
+/* #include <cstdlib> */
+/* #include <cstring> */
+/* #include <cerrno> */
+/* #include <libproc.h> */
+
+/* #include "mar_utils.h" */
+
+// setup function
+// void setupSettings();
+
 namespace settings {
   // global settings 
   extern const unsigned int width;

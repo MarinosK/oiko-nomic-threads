@@ -16,26 +16,62 @@
 
 #include "mar_utils.h"
 
+// using an aggreagate class to implement RAII
+class OikoThreadsAggregate {
+private:
+  Pattern *pattern;
+  Visualizer *visualizer;
+  Controller *arduino;
+  bool portOpen;
+  cv::Mat nextLine;
+public:
+  OikoThreadsAggregate() : 
+    pattern(new Pattern),
+    visualizer(new Visualizer(settings::width * 8, settings::width * 5)),
+    arduino(new Controller),
+    portOpen(false),
+    nextLine()
+  {
+  }
+  explicit OikoThreadsAggregate(int width, int height) : 
+    pattern(new Pattern),
+    visualizer(new Visualizer(width,height)),
+    arduino(new Controller),
+    portOpen(false),
+    nextLine() {
+  }
+  ~OikoThreadsAggregate() {
+    delete pattern;
+    delete visualizer;
+    delete arduino;
+  }
+  OikoThreadsAggregate(const OikoThreadsAggregate&) =delete;
+  OikoThreadsAggregate& operator=(const OikoThreadsAggregate&) =delete;
+  void setUp() {
+    pattern->setUp();
+    portOpen = arduino->setUp();
+  }
+  void loop() {
+    if (portOpen) { // if there is a connection
+      nextLine = pattern->nextLine(); // retrieve nextLine
+      arduino->sendMsg(nextLine); // setUp solenoids
+      arduino->waitForMsg(); // wait for responce
+      visualizer->animate(nextLine); // animate next line
+      cv::waitKey(1); // wait  a second
+    } else {
+      std::cout << "Communication with the machine interrupted !" << std::endl;   
+    }
+  }
+};
+
+
 int main( int argc, char** argv ) {
 
   // preample credits
   std::cout << "\n*****\nOiko-nomic Threads \ninstallation for algorithmically controlled knitting machine and open data \n(c) 2013 Marinos Koutsomichalis, Maria Varela, Afroditi Psara\n*****\n" << std::endl;
 
   std::cout << "press q (and <return>) to quit.\n" << std::endl;
-
   std::cout << "starting..\n" << std::endl;
-
-  // setup pattern
-  Pattern *pattern = new Pattern;
-  pattern->setUp();
-
-  // setup visualizer
-  Visualizer *visualizer = new Visualizer(settings::width * 8, settings::width * 5);
-
-  // setup Controller
-  Controller *arduino = new Controller;
-  bool portOpen = arduino->setUp();
-
 
   std::atomic<bool> run(true); // flag to quit when q is pressed
 
@@ -48,36 +84,19 @@ int main( int argc, char** argv ) {
     });
   thread.detach(); // detach thread
 
-  // start retrieving lines
+  // lauch program
+  OikoThreadsAggregate program;
+  program.setUp();
   while (run) {
-  // for (int i = 0; i<10; ++i) {
-    if (portOpen) { // if there is a connection
-      // start retrieving lines
-      cv::Mat nextLine(pattern->nextLine()); // retrieve nextLine
-      arduino->sendMsg(nextLine); // setUp solenoids
-      arduino->waitForMsg(); // wait for responce
-      visualizer->animate(nextLine); // animate next line
-      cv::waitKey(1); // wait half a second
-    } else {
-      std::cout << "Communication with the machine interrupted !" << std::endl;   
-    }
+    program.loop();
   }
 
   // for stills
   // for (int i=0; i<10; i++) visualizer->still(pattern, 200);  
   // visualizer->clean();
-  
+
   // export stills
   // for (int i=0; i<5; i++) visualizer->exportStill(pattern, 768);  
-
-
-  // wait key
-  // cv::waitKey();
-
-  // free memory
-  delete pattern;
-  delete visualizer;
-  delete arduino;
 
   return 0;
 }

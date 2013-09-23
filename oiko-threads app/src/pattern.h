@@ -15,6 +15,12 @@
 #include <cstdlib>
 #include <ctime>
 #include <algorithm>
+#include <cstdio>
+#include <cstring>
+#include <cerrno>
+#include <libproc.h>
+
+#include "mar_utils.h"
 
 #include "boost/lexical_cast.hpp"
 #include "opencv2/opencv.hpp"

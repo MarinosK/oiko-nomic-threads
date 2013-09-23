@@ -42,7 +42,7 @@ void loop() {
   
   if (gMessageReceived) {
     delay(1000);
-    Serial.println("Done!");
+    Serial.print("done!\n");
     gMessageReceived = false;
   }
  
