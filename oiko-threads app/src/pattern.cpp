@@ -20,18 +20,6 @@ Pattern::Pattern() :
 
 // ============================= setUp ============================== 
 void Pattern::setUp() {
-  // update mPaths vector with the right mPaths (read from settings.h)
-  // mPaths.push_back(settings::pattern0);
-  // mPaths.push_back(settings::pattern1);
-  // mPaths.push_back(settings::pattern2);
-  // mPaths.push_back(settings::pattern3);
-  // mPaths.push_back(settings::pattern4);
-  // mPaths.push_back(settings::pattern5);
-  // mPaths.push_back(settings::pattern6);
-  // mPaths.push_back(settings::pattern7);
-  // mPaths.push_back(settings::pattern8);
-  // mPaths.push_back(settings::pattern9);
-  // read images from hard disc and store them to mOriginals' vector
 
   for (std::vector<std::string>::iterator it = mPaths.begin() ; it != mPaths.end(); ++it) {
     cv::Mat image,binaryImage;
@@ -42,16 +30,6 @@ void Pattern::setUp() {
     cv::threshold(image, binaryImage, 100, 255, cv::THRESH_BINARY);
     mOriginals.push_back(binaryImage);
   }
-
-  // for (int i=0; i<=9; i++) {
-  //   cv::Mat image,binaryImage;
-  //   image = cv::imread(mPaths[i],0);
-  //   if (!image.data) { // check if loaded
-  //     std::cout << "Error: pattern image " << mPaths[i] << " could not be opened" << std::endl; }
-  //   // apply threashold to make images binary
-  //   cv::threshold(image, binaryImage, 100, 255, cv::THRESH_BINARY);
-  //   mOriginals.push_back( binaryImage);
-  // }
 
   // setUp mData retreiving
   mData.setUp();

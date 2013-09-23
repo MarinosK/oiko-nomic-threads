@@ -7,32 +7,30 @@
 
 #pragma once
 
-/* #include <iostream> */
-/* #include <cstdio> */
-/* #include <cstdlib> */
-/* #include <cstring> */
-/* #include <cerrno> */
-/* #include <libproc.h> */
+#include <iostream>
+#include <string>
+#include <libproc.h>
+#include <mach-o/dyld.h>
 
-/* #include "mar_utils.h" */
+#include "mar_utils.h"
 
-// setup function
-// void setupSettings();
+const std::string getAbsolutePath();
+const std::string appendPath(std::string, const std::string&);
 
 namespace settings {
   // global settings 
   extern const unsigned int width;
   extern const unsigned int speed;
-  extern const char* const filename;  // the filename to use
+  extern const std::string filename;  // the filename to use
   // selected patterns
-  extern const char* const pattern0;
-  extern const char* const pattern1;
-  extern const char* const pattern2;
-  extern const char* const pattern3;
-  extern const char* const pattern4;
-  extern const char* const pattern5;
-  extern const char* const pattern6;
-  extern const char* const pattern7;
-  extern const char* const pattern8;
-  extern const char* const pattern9;
+extern const std::string pattern0;
+  extern const std::string pattern1;
+  extern const std::string pattern2;
+  extern const std::string pattern3;
+  extern const std::string pattern4;
+  extern const std::string pattern5;
+  extern const std::string pattern6;
+  extern const std::string pattern7;
+  extern const std::string pattern8;
+  extern const std::string pattern9;
 }
