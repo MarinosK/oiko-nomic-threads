@@ -22,11 +22,12 @@ OIKO_THREADS APP:
 General Information:
 * designed and implemented by Marinos Koutsomichalis in C++ using STL, Boost and openCV headers and libraries.
 * the application is tested and reported to work in Mac Os X 10.8 operating system
-* in theory the application can be ported to other operating systems
+* in theory the application can be ported easily to other operating systems, yet it is not cross platform at its present form.
 To Compile/Use: 
 * openCV, Boost and g++ should be installed and configured
 * edit makefile to make sure that all the flags are set according to your specific configuration
-* edit Settings.h to include the paths of the motiffs and the dataset, as well as the rest settings 
+* Settings.h/.cpp is hard-coded to point at specific file names (10 motiffs and a dataset), you will definitely need to change this if you plan to work will different file-names or paths.
+* header file mar_utils.h is not included but it's not really essential, just comment it out from all header files - it only contains some macro definitions used for Debuging only. At some point reference to the header will be deleted. 
 * use make and a binary will be created in the application folder
 * remember to put all the required files into the data folder
 * the dataset should be a csv file (named PSGR.csv if Settings.h is left untouched) containing lists of dates and ammounts (formated as YYYYMMDD, AMMOUNT) with no blank or text lines
@@ -52,9 +53,10 @@ Pattern Encoding:
 ARDUINO FIRMWARE:
 
 General Information:
-* designed and implemented by Afroditi Psarra in Wiring.
-Usage/etc:
-* [.. to be edited ..]
+* designed and implemented by Marinos Koutsomichalis and Afroditi Psarra.
+* the code will update the position of the solenoids according to messages received from over Serial from the oiko-threads app and will respond when succesfully done so. 
+* due to certain technical restrictions only a certain range of needles is used in the machine, namely 16-175.  
+* [..to be edited ]
 
 
 HARDWARE:

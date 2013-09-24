@@ -15,9 +15,7 @@ coded by Marinos Koutsomichalis (c) 2013, Heraklion
 #include <fstream>
 #include <string>
 #include <iostream>
-
 #include "settings.h"
-
 #include "mar_utils.h"
 
 struct Entry {
