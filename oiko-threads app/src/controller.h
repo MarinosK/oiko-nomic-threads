@@ -37,9 +37,9 @@ class Controller {
   bool sendMsg(const cv::Mat&); // send pattern to arduino
   bool waitForMsg(); // read message
 
-  explicit inline Controller(); // Ctor
-  explicit inline Controller(int); // Ctor with baudrate
-  inline ~Controller(); // Dtor
+  explicit Controller(); // Ctor
+  explicit Controller(int); // Ctor with baudrate
+  ~Controller(); // Dtor
   Controller(const Controller&) =delete; // no copy Ctor
   Controller& operator= (const Controller&) =delete; // no operator=
 };
@@ -47,20 +47,6 @@ class Controller {
 // inline member functions here
 const std::string& Controller::getPath() const { 
   return arduinoID;
-}
-
-Controller::Controller() : 
-  mBaudRate(115200),
-  mFd(-1) {  
-}
-
-Controller::Controller(int baudrate_) : 
-  mBaudRate(baudrate_),
-  mFd(-1) {  
-}
-
-Controller::~Controller() {
-  arduino_lib::serialport_close(mFd);
 }
 
 #endif /* _CONTROLLER_H */

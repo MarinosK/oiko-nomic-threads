@@ -7,6 +7,20 @@
 
 std::string Controller::arduinoID = "";
 
+Controller::Controller() : 
+  mBaudRate(115200),
+  mFd(-1) {  
+}
+
+Controller::Controller(int baudrate_) : 
+  mBaudRate(baudrate_),
+  mFd(-1) {  
+}
+
+Controller::~Controller() {
+  arduino_lib::serialport_close(mFd);
+}
+
 bool Controller::sendMsg(const cv::Mat& mat) {
 
   std::cout << "Attempting to send next line of pixels to knitting machine.." << std::endl;
