@@ -1,7 +1,10 @@
 *~
 *.o
+*.a
+*.so
 *.png
 *.csv
+*.dylib
 #*
 .#*
 oiko-threads
