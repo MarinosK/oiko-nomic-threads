@@ -1,9 +1,9 @@
-/* controller.h
- */
+/* controller.h */
 
-/* 
-   Oikonomic Threads (c) 2013 Marinos Koutsomichalis, Maria Varela, Afroditi Psara
-   installation for algorithmically controlled knitting machine and open data 
+/*
+  Coded by Marinos Koutsomichalis for the Oikonomic Threads projects.
+  Oikonomic Threads (c) 2013 Marinos Koutsomichalis, Maria Varela, Afroditi Psarra. 
+  Installation for algorithmically controlled knitting machine and open data
 */
 
 // sender sends messages to arduino

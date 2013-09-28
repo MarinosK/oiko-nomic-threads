@@ -1,4 +1,4 @@
-// this file has been originally written by Tod E. Kurt, http://todbot.com/blog/ and adapted in C++ by Marinos Koutsomichalis for the purposes of the Oiko-Nomic Threads project - modifications have been minor, therefore all credits should be reserved for Tod E. Kurt
+// this file has been originally written by Tod E. Kurt, http://todbot.com/blog/ and adapted in C++ by Marinos Koutsomichalis (www.marinoskoutsomichalis.com) for the purposes of the Oiko-Nomic Threads project - modifications have been minor, therefore all credits should be reserved for Tod E. Kurt
 
 
 #ifndef __ARDUINO_SERIAL_LIB_H__

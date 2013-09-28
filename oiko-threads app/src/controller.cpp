@@ -1,6 +1,7 @@
-/* 
-   Oikonomic Threads (c) 2013 Marinos Koutsomichalis, Maria Varela, Afroditi Psara
-   installation for algorithmically controlled knitting machine and open data 
+/*
+  Coded by Marinos Koutsomichalis for the Oikonomic Threads projects.
+  Oikonomic Threads (c) 2013 Marinos Koutsomichalis, Maria Varela, Afroditi Psarra. 
+  Installation for algorithmically controlled knitting machine and open data
 */
 
 #include "controller.h"
@@ -35,10 +36,13 @@ bool Controller::sendMsg(const cv::Mat& mat) {
 
     for (int i = (settings::width - 1); i >= 0; --i) {
       uchar bit = mat.at<uchar>(0, i);
-      if (bit == 0) { data.push_back('0'); } else { data.push_back('1'); }
+      int castedBit = (int) bit; 
+      if (castedBit == 0) { data.push_back('0'); } else { data.push_back('1'); }
     }
 
     int rc = arduino_lib::serialport_write(mFd, data.c_str()); // send pixels
+    // DEBUG PRINT
+    // DEBUG_PRINT(data);
 
     if (rc == -1) {
        std::cout << "Error sending the pixels to the machine !" << std::endl;
@@ -61,7 +65,7 @@ bool Controller::waitForMsg() {
     memset(buf,0,bufferSize); // initiallize it
 
     // read characters over serial, wait until a newline or until 60 seconds have passed
-    arduino_lib::serialport_read_until(mFd, buf, endOfLine, bufferSize, 60000);
+    arduino_lib::serialport_read_until(mFd, buf, endOfLine, bufferSize, 1000000); // wait for app 16 minutes
     
     std::string test(buf); // convert char* to string 
 
@@ -69,7 +73,7 @@ bool Controller::waitForMsg() {
       std::cout << "Machine's response was positive: line has been knitted succesfully!" << std::endl;
       return true;
     } else {
-      std::cout << "Knitting machine did respond, but the response was incomprehensible: it is not known whether line was knitted or not.\nWill proceed nevertheless." << std::endl;
+      std::cout << "Knitting machine did respond, but the response was incomprehensible or the request timed out: it is not known whether line was knitted or not.\nWill proceed nevertheless." << std::endl;
       return true;
     }
   }

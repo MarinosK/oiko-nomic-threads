@@ -1,6 +1,7 @@
 /*
-  part of Oikonomic Threads project
-  coded by Marinos Koutsomichalis (c) 2013, Heraklion
+  Coded by Marinos Koutsomichalis for the Oikonomic Threads projects.
+  Oikonomic Threads (c) 2013 Marinos Koutsomichalis, Maria Varela, Afroditi Psarra. 
+  Installation for algorithmically controlled knitting machine and open data
 */
 
 // global settings

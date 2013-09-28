@@ -1,3 +1,8 @@
+/*
+  Coded by Marinos Koutsomichalis for the Oikonomic Threads projects.
+  Oikonomic Threads (c) 2013 Marinos Koutsomichalis, Maria Varela, Afroditi Psarra. 
+  Installation for algorithmically controlled knitting machine and open data
+*/
 
 #include "settings.h"
 

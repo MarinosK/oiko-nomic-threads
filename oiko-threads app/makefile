@@ -1,12 +1,18 @@
 # this makefile is for mac with gcc and opecv installed with macports
 
 CC = /opt/local/bin/g++-mp-4.8
+#CC = llvm-g++
 
 # dynamic linking
-# CFLAGS = -I/opt/local/include -I/usr/local/include -L/opt/local/lib -lopencv_core -lopencv_highgui -lopencv_imgproc -std=c++11
+# CFLAGS = -I/opt/local/include -I/usr/local/include -L/opt/local/lib -lopencv_core -lopencv_highgui -lopencv_imgproc -std=c++11 -O2
 
-# static linking
-CFLAGS = -I/opt/local/include -I/usr/local/include /Users/marinos/projects/ongoing/oiko-nomic-threads/oiko-threads\ app/static_libs/libopencv_core.a /Users/marinos/projects/ongoing/oiko-nomic-threads/oiko-threads\ app/static_libs/libopencv_highgui.a /Users/marinos/projects/ongoing/oiko-nomic-threads/oiko-threads\ app/static_libs/libopencv_imgproc.a  /Users/marinos/projects/ongoing/oiko-nomic-threads/oiko-threads\ app/static_libs/liblibjpeg.a  /Users/marinos/projects/ongoing/oiko-nomic-threads/oiko-threads\ app/static_libs/liblibpng.a  /Users/marinos/projects/ongoing/oiko-nomic-threads/oiko-threads\ app/static_libs/libzlib.a /Users/marinos/projects/ongoing/oiko-nomic-threads/oiko-threads\ app/static_libs/liblibtiff.a /Users/marinos/projects/ongoing/oiko-nomic-threads/oiko-threads\ app/static_libs/liblibjasper.a /Users/marinos/projects/ongoing/oiko-nomic-threads/oiko-threads\ app/static_libs/libIlmImf.a -F/System/Library/PrivateFrameworks -framework Cocoa -framework QTKit -framework QuartzCore -framework AppKit -framework OpenCL -std=c++11
+# static linking (g++)
+CFLAGS = -I/opt/local/include -I/usr/local/include /Users/marinos/projects/ongoing/oiko-nomic-threads/oiko-threads\ app/static_libs/libopencv_core.a /Users/marinos/projects/ongoing/oiko-nomic-threads/oiko-threads\ app/static_libs/libopencv_highgui.a /Users/marinos/projects/ongoing/oiko-nomic-threads/oiko-threads\ app/static_libs/libopencv_imgproc.a  /Users/marinos/projects/ongoing/oiko-nomic-threads/oiko-threads\ app/static_libs/liblibjpeg.a  /Users/marinos/projects/ongoing/oiko-nomic-threads/oiko-threads\ app/static_libs/liblibpng.a  /Users/marinos/projects/ongoing/oiko-nomic-threads/oiko-threads\ app/static_libs/libzlib.a /Users/marinos/projects/ongoing/oiko-nomic-threads/oiko-threads\ app/static_libs/liblibtiff.a /Users/marinos/projects/ongoing/oiko-nomic-threads/oiko-threads\ app/static_libs/liblibjasper.a /Users/marinos/projects/ongoing/oiko-nomic-threads/oiko-threads\ app/static_libs/libIlmImf.a -F/System/Library/PrivateFrameworks -framework Cocoa -framework QTKit -framework QuartzCore -framework AppKit -framework OpenCL -std=c++11 -O2
+
+#  -mmacosx-version-min=10.6
+
+# static linking (clang++) ??
+# CFLAGS = -I/opt/local/include -I/usr/local/include /Users/marinos/projects/ongoing/oiko-nomic-threads/oiko-threads\ app/static_libs/libopencv_core.a /Users/marinos/projects/ongoing/oiko-nomic-threads/oiko-threads\ app/static_libs/libopencv_highgui.a /Users/marinos/projects/ongoing/oiko-nomic-threads/oiko-threads\ app/static_libs/libopencv_imgproc.a  /Users/marinos/projects/ongoing/oiko-nomic-threads/oiko-threads\ app/static_libs/liblibjpeg.a  /Users/marinos/projects/ongoing/oiko-nomic-threads/oiko-threads\ app/static_libs/liblibpng.a  /Users/marinos/projects/ongoing/oiko-nomic-threads/oiko-threads\ app/static_libs/libzlib.a /Users/marinos/projects/ongoing/oiko-nomic-threads/oiko-threads\ app/static_libs/liblibtiff.a /Users/marinos/projects/ongoing/oiko-nomic-threads/oiko-threads\ app/static_libs/liblibjasper.a /Users/marinos/projects/ongoing/oiko-nomic-threads/oiko-threads\ app/static_libs/libIlmImf.a -F/System/Library/PrivateFrameworks -framework Cocoa -framework QTKit -framework QuartzCore -framework AppKit -framework OpenCL -mmacosx-version-min=10.6 -stdlib=libc++ -std=gnu++11
 
 # deprecated building configurations
 # CFLAGS = -I/opt/local/include -I/usr/local/include -L/opt/local/lib -lopencv_core -lopencv_highgui -lopencv_imgproc -std=c++11 -Bstatic

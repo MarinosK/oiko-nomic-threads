@@ -23,11 +23,6 @@ m.mivon [at] gmail.com
 
 */
 
- 
- /* IMPORTANT: IN ITS CURRENT STATE SOFTWARE/HARDWARE IS UNDER 
- HEAVY DEVELOPMENT AND NOT FUNCTIONAL */
-
-
 #include "solenoids.h" // the solenoids port mappings
 
 // -------------------------------- constants ---------------------- 
@@ -46,7 +41,7 @@ volatile int gEncoderPosition = 0; // encoder's position
 short gDirection = 0;      // 0 is for UNDEFINED direction, -1 is for Left-Right, +1 is for Right-Left
 short gPrevDirection = 0;  // the previous direction
 byte gEndOfLine = 0; // end of Line
-byte gPrevEndOfLine = 0; // end of Line
+byte gPrevEndOfLine = 0; // Previous end of Line
 byte gLeft = 0;   // flag to indicate if left sensor has been hit once
 byte gRight = 0;  // flag to indicate if right sensor has been hit once
 byte gLeftSensorValue = LOW;        // left sensor value
@@ -58,29 +53,29 @@ byte gRightSensorPrevValue  = LOW;  // right sensor previous value
 int gStitch = 0;
 int gPrevStitch = 0;
 
-// used to update pixels Array and respond to oiko-threads-app
-int gPixelsIndex = 16; // gPixels array index 
-boolean gPendingRequest = false;
-
 short gSolenoids[] = { // solenoids array
   // SOL_1, SOL_2, SOL_3, SOL_4, SOL_5, SOL_6, SOL_7, SOL_8, SOL_9, SOL_10, SOL_11, SOL_12, SOL_13, SOL_14, SOL_15, SOL_16
   // solenoids are mirrored !!!
   SOL_1, SOL_2, SOL_3, SOL_4, SOL_5, SOL_6, SOL_7, SOL_8, SOL_16, SOL_15, SOL_14, SOL_13, SOL_12, SOL_11, SOL_10, SOL_9
 };
 
+// used to update pixels Array and respond to oiko-threads-app
+int gPixelsIndex = 16; // gPixels array index 
+boolean gPendingRequest = false;
+
 byte gPixels[256] = { 
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // these have to be always 1
   // useful pixels section starts here
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,
-  0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1,
-  0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,
-  0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-  0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-  0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   // useful pixels section ends here  
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
   0, 0, 0, 0, 0, 0, 0, 0, // array ends here
@@ -100,7 +95,6 @@ void gEncoderInterrupt() {
 
 void setup() {
   Serial.begin(115200); // begin serial
-  Serial.println("starting...");  // starting
   
   pinMode(gEncoderA, INPUT); // encoder is input
   pinMode(gLeftSensor, INPUT); // encoder is input
@@ -123,31 +117,34 @@ void setup() {
 
 void loop() {
   
-  gUpdatePixelsSerial(); // update pixels according to serial input
-  // debugPrintPixels(); // print pixels array on window for bebug purposes
-    
+  gPrevEndOfLine = gEndOfLine; // set previous end of line
+  gUpdatePixelsSerial(); // update pixels according to serial input  
+  
+  if (gPixelsIndex > 170) gPendingRequest = true;
+  
   gCalculateDirectionAndEndOfLine(); // calculate the direction of the carriage
   gResetEncoderPosition();    // reset gEncoderPosition on the endOfLines
   gCalculateStitch(); // calculate stitch
-  gSetSolenoids(); // set solenoids accordingly;
- 
-  if (gPendingRequest) {
-   if ((gEndOfLine == 1) && (gPrevEndOfLine == 0)) {   // when done knitting line
-     gPendingRequest = false; // send gPendingRequest to false
-     Serial.print("done!\n"); // send done to oiko-threads-app
-   }
-  }
 
+  if (gPendingRequest) gSetSolenoids(); // set solenoids accordingly;
+ 
+  if (gPendingRequest && (gEndOfLine == 1) && (gPrevEndOfLine == 0)) {
+    gPendingRequest = false; // send gPendingRequest to false
+    gPixelsIndex = 16;
+    Serial.print("done!\n"); // send done to oiko-threads-app  
+  }
+  
     // debug print
 //  Serial.print(gEncoderPosition);
 //  Serial.print("  ");
 //  Serial.println(gStitch);
 }
 
+// ------------- Calculate Direction and End Of Line  ---------------------------------
+
 void gCalculateDirectionAndEndOfLine() {
   
   gPrevDirection = gDirection; // update previous direction
-  gPrevEndOfLine = gEndOfLine;
   
   // update previous values
   gLeftSensorPrevValue = gLeftSensorValue;
@@ -196,13 +193,16 @@ void gCalculateDirectionAndEndOfLine() {
 //  Serial.print(gLeftSensorValue);
 //  Serial.print("  ");
 //  Serial.println(gRightSensorValue);
-};
+}
 
+// ------------- reset encoder position  ---------------------------------
 void gResetEncoderPosition() {
   if (gEndOfLine == 1) {
     gEncoderPosition = 0;
   } 
 }
+
+// ------------- Calculate Stitch  ---------------------------------
 
 void gCalculateStitch() { 
   gPrevStitch = gStitch; // update previous stitch
@@ -222,6 +222,7 @@ void gCalculateStitch() {
   gStitch = encoderPosition - 28;
 }
 
+// --------------------- Set Solenoids  ---------------------------------
 void gSetSolenoids () {  
   
     if( gPrevStitch != gStitch) { // if stitch has moved
@@ -260,11 +261,13 @@ void gSetSolenoids () {
     } 
 }
 
+// ------------- update Pixels Serial  ---------------------------------
+
 void gUpdatePixelsSerial() {
   if (Serial.available() > 0) {
 
     // update pending request
-    gPendingRequest = true;
+    // gPendingRequest = true;
     
     // read input
     int value = Serial.read(); 
@@ -280,20 +283,8 @@ void gUpdatePixelsSerial() {
     // update gPixels
     gPixels[gPixelsIndex] = pixel;
     
-    // update index
-    if (gPixelsIndex > 175) {
-      gPixelsIndex = 16;
-    } else {
-      ++gPixelsIndex;
-    } 
-  }
-};
-
-void debugPrintPixels() {
-  if (gPixelsIndex == 175) {
-    for (int i=0; i<256; ++i) {
-      Serial.print(gPixels[i]);
-    }
-    Serial.println("");
+    // update index 
+    if (gPixelsIndex <= 175) ++gPixelsIndex;  
+    // if (gPixelsIndex > 175) gPixelsIndex = 16;
   }
 }
