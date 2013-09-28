@@ -1,6 +1,6 @@
 OIKO-NOMIC THREADS
 An installation for algorithmically controlled knitting machine and open data 
-(c) 2013 Marinos Koutsomichalis, Maria Varela, Afroditi Psara
+(c) 2013 Marinos Koutsomichalis, Maria Varela, Afroditi Psarra
 
 Software and Hardware development for Oiko-nomic threads was realized by Marinos Koutsomichalis, Afroditi Psarra and Maria Varela.  Related code, texts and images are distributed under the Attribution-NonCommercial-ShareAlike 3.0 Unported Creative Commons Licence (details here: http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US). 
 
