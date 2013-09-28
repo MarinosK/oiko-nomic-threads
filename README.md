@@ -11,8 +11,6 @@ marinos [at] agxivatein.com
 stereochic [at] gmail.com
 m.mivon [at] gmail.com
 
-> IMPORTANT: IN ITS CURRENT STATE SOFTWARE/HARDWARE IS UNDER HEAVY DEVELOPMENT AND NOT FUNCTIONAL 
-
 DESCRIPTION:
 Hardware and software related with OIKO-NOMIC THREADS installation art project.  The oiko-threads command-line app retrieves data from a file, encodes them with respect to a complex algorithm and a database of ethnological motiffs and controls algorithmically a hacked knitting machine (Brother 950i model).  The Brother 950i knitting machine was heavily hacked: 'brain' of the machine was completely removed (along with many other elecronics parts) and substituted by an Arduino DUE running custom firmware that communicates with the oiko-threads app, informs the latter of the K-carriage's position and encodes image data sent by it into electronic/mechanical operations that will eventually knit patterns into a piece of fabrik. Details follow>
 
