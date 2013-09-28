@@ -4,7 +4,7 @@
 *.so
 *.png
 *.csv
-*.dylib
+*dylib
 #*
 .#*
 oiko-threads
