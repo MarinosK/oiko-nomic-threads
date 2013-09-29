@@ -58,7 +58,7 @@ public:
       arduino->sendMsg(nextLine); // setUp solenoids
       arduino->waitForMsg(); // wait for responce
       visualizer->animate(nextLine); // animate next line
-      cv::waitKey(1); // wait  a second
+      // cv::waitKey(1); // wait  a second
     } else {
       std::cout << "Communication with the machine interrupted !" << std::endl;   
     }

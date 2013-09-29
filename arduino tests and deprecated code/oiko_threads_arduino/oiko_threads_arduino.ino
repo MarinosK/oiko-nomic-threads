@@ -110,6 +110,8 @@ void setup() {
     digitalWrite(gSolenoids[i],0);
   }
   
+  // Serial.println("starting.."); // begin serial
+  
   gCalculateDirectionAndEndOfLine(); // calculate direction
 }
 
@@ -118,19 +120,28 @@ void setup() {
 void loop() {
   
   gPrevEndOfLine = gEndOfLine; // set previous end of line
+  gCalculateDirectionAndEndOfLine(); // calculate the direction of the carriage
+  
+    // debug print 
+   Serial.print(gEndOfLine);
+   Serial.print("  ");
+   Serial.print(gPixelsIndex);
+   Serial.print("  ");
+   Serial.print(gPendingRequest);
+   Serial.print("  ");
+   Serial.println(gPrevEndOfLine);
+  
   gUpdatePixelsSerial(); // update pixels according to serial input  
   
-  if (gPixelsIndex > 170) gPendingRequest = true;
-  
-  gCalculateDirectionAndEndOfLine(); // calculate the direction of the carriage
   gResetEncoderPosition();    // reset gEncoderPosition on the endOfLines
   gCalculateStitch(); // calculate stitch
-
-  if (gPendingRequest) gSetSolenoids(); // set solenoids accordingly;
- 
+  gSetSolenoids(); // set solenoids accordingly;
+  
+  //if (gPixelsIndex > 175) gPendingRequest = true;
   if (gPendingRequest && (gEndOfLine == 1) && (gPrevEndOfLine == 0)) {
     gPendingRequest = false; // send gPendingRequest to false
-    gPixelsIndex = 16;
+    // gPixelsIndex = 16;
+    // delay(100);
     Serial.print("done!\n"); // send done to oiko-threads-app  
   }
   
@@ -265,9 +276,6 @@ void gSetSolenoids () {
 
 void gUpdatePixelsSerial() {
   if (Serial.available() > 0) {
-
-    // update pending request
-    // gPendingRequest = true;
     
     // read input
     int value = Serial.read(); 
@@ -284,7 +292,12 @@ void gUpdatePixelsSerial() {
     gPixels[gPixelsIndex] = pixel;
     
     // update index 
-    if (gPixelsIndex <= 175) ++gPixelsIndex;  
-    // if (gPixelsIndex > 175) gPixelsIndex = 16;
+    if (gPixelsIndex <= 174) { 
+        ++gPixelsIndex;  
+    } else if (gPixelsIndex > 174) {
+      // update pending request
+      gPendingRequest = true;  
+      gPixelsIndex = 16;
+    }
   }
 }
