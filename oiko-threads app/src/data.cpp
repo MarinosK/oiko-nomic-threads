@@ -32,6 +32,7 @@ Entry Data::nextEntry() {;
   std::string rawAmount;
   Entry entry;
   std::ifstream myfile (settings::filename, std::ios::in);      // open file 
+  std::cout << "Attempting to retrieve next data enrtry." << std::endl;
   if (myfile.is_open()) {
     myfile.seekg (pointer, std::ios::beg);	    // set pointer to next entry
     char next;
@@ -60,6 +61,7 @@ Entry Data::nextEntry() {;
   } else {
     std::cout << "Error: could not read entry from file - file not open" << std::endl;
   }
+  std::cout << "Data entry retrieved successfully.\nDate: " << entry.date << "\nAmount: " << entry.amount << std::endl;
   // return data
   return entry;
 }

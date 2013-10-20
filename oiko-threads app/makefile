@@ -18,8 +18,8 @@ CFLAGS = -I/opt/local/include -I/usr/local/include /Users/marinos/projects/ongoi
 # CFLAGS = -I/opt/local/include -I/usr/local/include -L/opt/local/lib -lopencv_core -lopencv_highgui -lopencv_imgproc -std=c++11 -Bstatic
 # CFLAGS = -I/opt/local/include -I/usr/local/include -L./static_libs -Wl,-Bstatic -lopencv_core -lopencv_highgui -lopencv_imgproc -Wl, -Bdynamic -lcrt0 -Wl,--as-needed -std=c++11 
 
-DEPS = src/data.h src/pattern.h src/visualizer.h src/settings.h src/controller.h src/arduino-serial-lib.h
-OBJ = src/oiko-threads.cpp src/data.cpp src/pattern.cpp src/visualizer.cpp src/settings.cpp src/controller.cpp src/arduino-serial-lib.cpp
+DEPS = src/data.h src/pattern.h src/visualizer.h src/settings.h src/controller.h src/arduino-serial-lib.h src/segment.h
+OBJ = src/oiko-threads.cpp src/data.cpp src/pattern.cpp src/visualizer.cpp src/settings.cpp src/controller.cpp src/arduino-serial-lib.cpp src/segment.cpp
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o application/oiko-threads $< $(CFLAGS)

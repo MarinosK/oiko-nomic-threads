@@ -28,7 +28,7 @@ private:
 public:
   OikoThreadsAggregate() : 
     pattern(new Pattern),
-    visualizer(new Visualizer(settings::width * 8, settings::width * 5)),
+    visualizer(new Visualizer(1680, 1020)),
     arduino(new Controller),
     portOpen(false),
     nextLine()
@@ -58,7 +58,13 @@ public:
       arduino->sendMsg(nextLine); // setUp solenoids
       arduino->waitForMsg(); // wait for responce
       visualizer->animate(nextLine); // animate next line
-      // cv::waitKey(1); // wait  a second
+      #ifndef demo_mode
+      cv::waitKey(1); // wait  a second
+      #endif
+      #ifdef demo_mode
+      cv::waitKey(10); // wait  20 seconds
+      #endif
+      
     } else {
       std::cout << "Communication with the machine interrupted !" << std::endl;   
     }

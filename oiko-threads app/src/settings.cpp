@@ -6,7 +6,12 @@
 
 #include "settings.h"
 
+#ifndef demo_mode 
 const unsigned int settings::width = 160;
+#endif
+#ifdef demo_mode 
+const unsigned int settings::width = 1680;
+#endif
 const unsigned int settings::speed = 10;
 
 const std::string getAbsolutePath() {

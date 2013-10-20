@@ -15,6 +15,9 @@
 
 #include "mar_utils.h"
 
+// select mode
+#define demo_mode 1
+
 const std::string getAbsolutePath();
 const std::string appendPath(std::string, const std::string&);
 

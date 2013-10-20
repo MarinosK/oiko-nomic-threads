@@ -19,13 +19,16 @@ Controller::Controller(int baudrate_) :
 }
 
 Controller::~Controller() {
-  arduino_lib::serialport_close(mFd);
+	#ifndef demo_mode
+	arduino_lib::serialport_close(mFd);
+	#endif
 }
 
 bool Controller::sendMsg(const cv::Mat& mat) {
 
   std::cout << "Attempting to send next line of pixels to knitting machine.." << std::endl;
 
+	#ifndef demo_mode
   if (mFd == -1) {
       std::cout << "Serial communication has been interrupted or broken - pixels were not sent !" << std::endl;
       return false;
@@ -51,10 +54,12 @@ bool Controller::sendMsg(const cv::Mat& mat) {
       return true;
     }
   }
+  	#endif 
 }
 
 bool Controller::waitForMsg() {
   std::cout << "Waiting for machine to knit line." << std::endl;
+  	#ifndef demo_mode
   if (mFd == -1) {
       std::cout << "Serial communication has been interrupted or broken - the machine never responded whether line was knitted or not.\nWill proceed nevertheless." << std::endl;
       return false;
@@ -77,9 +82,15 @@ bool Controller::waitForMsg() {
       return true;
     }
   }
+  #endif
+  #ifdef demo_mode
+  std::cout << "Machine's response was positive: line has been knitted succesfully!" << std::endl;
+  return true;
+	#endif
 }
 
 bool Controller::setUp() {
+#ifndef demo_mode
   bool foundPath = findPath(); // find path and save it at arduinoID
   std::cout << "Attempting to setup serial communication.." << std::endl;
   if (foundPath) {
@@ -104,12 +115,18 @@ bool Controller::setUp() {
     std::cout << "Error: serial port not open !" << std::endl;
     return false;
   }
+  #endif 
+    #ifdef demo_mode
+    std::cout << "Attempting to setup serial communication.." << std::endl;
+    std::cout << "In demo no actual communication with the machine take place, therefore serial communication setup is being skipped." << std::endl;
+  return true;
+	#endif
 }
 
 bool Controller::findPath() {
 
   std::cout << "Attempting to detect knitting machine over serial.." << std::endl;
-  
+   #ifndef demo_mode
   FILE *pipe = popen("ls /dev/tty.usbmodem*", "r");
 
   if (!pipe) {
@@ -141,5 +158,10 @@ bool Controller::findPath() {
     
     }
   }
+  #endif
+    #ifdef demo_mode
+    std::cout << "Attempting to detect knitting machine over serial.." << std::endl;
+    std::cout << "Knitting machine detected on serial port: " << "[ DEMO MODE ]" << std::endl;
+	#endif
   return true;
 }
