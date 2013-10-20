@@ -21,6 +21,8 @@
 
 #include "mar_utils.h"
 
+#include "sendOsc.h"
+
 class Visualizer {
 private:
   const int mWidth, mHeight;       // width and height..

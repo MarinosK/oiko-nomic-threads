@@ -25,6 +25,8 @@
 #include "arduino-serial-lib.h"
 #include "settings.h"
 
+#include "sendOsc.h"
+
 class Controller {
  private:
   static std::string arduinoID; // arduino path

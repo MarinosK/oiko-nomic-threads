@@ -33,6 +33,9 @@ Entry Data::nextEntry() {;
   Entry entry;
   std::ifstream myfile (settings::filename, std::ios::in);      // open file 
   std::cout << "Attempting to retrieve next data enrtry." << std::endl;
+#ifdef dual_mode
+  osc_communication::sendOsc("Attempting to retrieve next data enrtry.");
+#endif
   if (myfile.is_open()) {
     myfile.seekg (pointer, std::ios::beg);	    // set pointer to next entry
     char next;
@@ -62,6 +65,13 @@ Entry Data::nextEntry() {;
     std::cout << "Error: could not read entry from file - file not open" << std::endl;
   }
   std::cout << "Data entry retrieved successfully.\nDate: " << entry.date << "\nAmount: " << entry.amount << std::endl;
+#ifdef dual_mode
+  osc_communication::sendOsc("Data entry retrieved successfully.");
+  std::string str = "Date: ";
+  osc_communication::sendOsc(str.append(itos(entry.date)));
+  str = "Amount: ";
+  osc_communication::sendOsc(str.append(itos(entry.ammount)));
+#endif
   // return data
   return entry;
 }

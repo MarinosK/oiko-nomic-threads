@@ -16,18 +16,22 @@
 #include "mar_utils.h"
 
 // select mode
-#define demo_mode 1
+#define demo_mode 1 // for emulation only
+#define osc_mode 1 // to send strings over serial to the second computer ** set the address, etc on the cpp file
 
 const std::string getAbsolutePath();
 const std::string appendPath(std::string, const std::string&);
 
 namespace settings {
+  // osc related
+  extern const std::string oscPath;
+  extern const int oscPort;
   // global settings 
-  extern const unsigned int width;
-  extern const unsigned int speed;
+  extern const unsigned int width; // line width 
+  extern const unsigned int speed; // speed in seconds
   extern const std::string filename;  // the filename to use
   // selected patterns
-extern const std::string pattern0;
+  extern const std::string pattern0;
   extern const std::string pattern1;
   extern const std::string pattern2;
   extern const std::string pattern3;

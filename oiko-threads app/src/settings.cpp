@@ -12,7 +12,22 @@ const unsigned int settings::width = 160;
 #ifdef demo_mode 
 const unsigned int settings::width = 1680;
 #endif
+
+#ifndef demo_mode 
+const unsigned int settings::speed = 1;
+#endif
+#ifdef demo_mode 
 const unsigned int settings::speed = 10;
+#endif
+
+#ifndef dual_mode 
+const std::string settings::oscPath = "127.0.0.1";
+const int settings::oscPort = 7000;
+#endif
+#ifdef dual_mode 
+const std::string settings::oscPath = "127.0.0.1";
+const int settings::oscPort = 7000;
+#endif
 
 const std::string getAbsolutePath() {
   char buf [PATH_MAX];

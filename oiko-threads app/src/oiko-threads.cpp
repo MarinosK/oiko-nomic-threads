@@ -17,6 +17,8 @@
 
 #include "mar_utils.h"
 
+#include "sendOsc.h"
+
 // using an aggreagate class to implement RAII
 class OikoThreadsAggregate {
 private:
@@ -59,12 +61,13 @@ public:
       arduino->waitForMsg(); // wait for responce
       visualizer->animate(nextLine); // animate next line
       #ifndef demo_mode
-      cv::waitKey(1); // wait  a second
+      cv::waitKey(settings::speed); 
       #endif
       #ifdef demo_mode
-      cv::waitKey(10); // wait  20 seconds
+      cv::waitKey(settings::speed); 
       #endif
-      
+      // test 
+      // osc_communication::sendOsc("test");
     } else {
       std::cout << "Communication with the machine interrupted !" << std::endl;   
     }
@@ -79,6 +82,12 @@ int main( int argc, char** argv ) {
 
   std::cout << "press q (and <return>) to quit.\n" << std::endl;
   std::cout << "starting..\n" << std::endl;
+
+  #ifdef dual_mode
+  osc_communication::sendOsc("\n*****\nOiko-nomic Threads \ninstallation for algorithmically controlled knitting machine and open data \n(c) 2013 Marinos Koutsomichalis, Maria Varela, Afroditi Psara\n*****\n");
+   osc_communication::sendOsc("press q (and <return>) to quit.\n");
+   osc_communication::sendOsc("starting..\n");
+  #endif
 
   std::atomic<bool> run(true); // flag to quit when q is pressed
 

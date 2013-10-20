@@ -36,6 +36,9 @@ Visualizer::~Visualizer() {
 void Visualizer::animate(cv::Mat mat) { 
 
   std::cout << "Updating knitting emulation." << std::endl; // post info
+#ifdef dual_mode
+  osc_communication::sendOsc("Updating knitting emulation.");
+#endif
 
   cv::resize(mat,mat,cv::Size(mWidth, mLineHeight)); // reshize input
 
