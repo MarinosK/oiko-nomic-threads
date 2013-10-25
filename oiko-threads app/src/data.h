@@ -16,9 +16,12 @@
 
 #include <fstream>
 #include <string>
+#include <iomanip>
+#include <sstream>
 #include <iostream>
 #include "settings.h"
 #include "mar_utils.h"
+#include "sendOsc.h"
 
 struct Entry {
   unsigned int date;

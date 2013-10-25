@@ -6,26 +6,22 @@
 
 #include "settings.h"
 
-#ifndef demo_mode 
-const unsigned int settings::width = 160;
-#endif
-#ifdef demo_mode 
-const unsigned int settings::width = 1680;
-#endif
+const unsigned int settings::width = 1680; // it Helps if it is an integer multiple of the next one
+const unsigned int settings::knitWidth = 160;
 
 #ifndef demo_mode 
 const unsigned int settings::speed = 1;
 #endif
 #ifdef demo_mode 
-const unsigned int settings::speed = 10;
+const unsigned int settings::speed = 100;
 #endif
 
 #ifndef dual_mode 
-const std::string settings::oscPath = "127.0.0.1";
+const std::string settings::oscPath = "192.168.1.2";
 const int settings::oscPort = 7000;
 #endif
 #ifdef dual_mode 
-const std::string settings::oscPath = "127.0.0.1";
+const std::string settings::oscPath = "192.168.1.2";
 const int settings::oscPort = 7000;
 #endif
 
@@ -46,7 +42,7 @@ const std::string appendPath(std::string path, const std::string& relativePath) 
   return path;
 }
 
-static const std::string absolutePath = getAbsolutePath();
+const std::string settings::absolutePath = getAbsolutePath();
 
 const std::string settings::filename = appendPath(absolutePath,"/data/PSGR.csv");  // the filename to use
 // selected patterns
@@ -60,3 +56,13 @@ const std::string settings::pattern6 = appendPath(absolutePath, "/data/6.png");
 const std::string settings::pattern7 = appendPath(absolutePath, "/data/7.png");
 const std::string settings::pattern8 = appendPath(absolutePath, "/data/8.png");
 const std::string settings::pattern9 = appendPath(absolutePath, "/data/9.png");
+const std::string settings::knitPattern0 = appendPath(absolutePath, "/data/knit0.png");
+const std::string settings::knitPattern1 = appendPath(absolutePath, "/data/knit1.png");
+const std::string settings::knitPattern2 = appendPath(absolutePath, "/data/knit2.png");
+const std::string settings::knitPattern3 = appendPath(absolutePath, "/data/knit3.png");
+const std::string settings::knitPattern4 = appendPath(absolutePath, "/data/knit4.png");
+const std::string settings::knitPattern5 = appendPath(absolutePath, "/data/knit5.png");
+const std::string settings::knitPattern6 = appendPath(absolutePath, "/data/knit6.png");
+const std::string settings::knitPattern7 = appendPath(absolutePath, "/data/knit7.png");
+const std::string settings::knitPattern8 = appendPath(absolutePath, "/data/knit8.png");
+const std::string settings::knitPattern9 = appendPath(absolutePath, "/data/knit9.png");

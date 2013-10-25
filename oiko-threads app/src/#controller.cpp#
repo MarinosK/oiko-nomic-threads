@@ -44,10 +44,10 @@ bool Controller::sendMsg(const cv::Mat& mat) {
   std::string data;
 
   for (int i = (settings::knitWidth - 1); i >= 0; --i) {
-  uchar bit = mat.at<uchar>(0, i);
-  int castedBit = (int) bit; 
-  if (castedBit == 0) { data.push_back('0'); } else { data.push_back('1'); }
-}
+    uchar bit = mat.at<uchar>(0, i);
+    int castedBit = (int) bit; 
+    if (castedBit == 0) { data.push_back('0'); } else { data.push_back('1'); }
+  }
 
   int rc = arduino_lib::serialport_write(mFd, data.c_str()); // send pixels
   // DEBUG PRINT

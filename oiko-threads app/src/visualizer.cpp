@@ -8,9 +8,10 @@
 
 // ============================= Constructors ===========================
 Visualizer::Visualizer() :
-  mWidth( settings::width * 8 ),
-  mHeight(settings::width * 5 ),
+  mWidth( settings::width),
+  mHeight(settings::width),
   mLineHeight(mWidth/settings::width),
+  // mLineHeight(1), // this is a hack currently
   mStillsIndex(0),
   mImage(mHeight, mWidth, CV_8UC1, cv::Scalar(0))
 {
@@ -21,6 +22,7 @@ Visualizer::Visualizer(const unsigned int mWidth_, const unsigned int mHeight_) 
   mWidth(mWidth_),
   mHeight(mHeight_),
   mLineHeight(mWidth/settings::width),
+  // mLineHeight(1), // this is a hack currently
   mStillsIndex(0),
   mImage(mHeight, mWidth, CV_8UC1, cv::Scalar(0))
 {
@@ -40,7 +42,7 @@ void Visualizer::animate(cv::Mat mat) {
   osc_communication::sendOsc("Updating knitting emulation.");
 #endif
 
-  cv::resize(mat,mat,cv::Size(mWidth, mLineHeight)); // reshize input
+  cv::resize(mat,mat,cv::Size(mWidth, mLineHeight)); // resize input
 
   // move the whole image upwards
   { // block for optimization

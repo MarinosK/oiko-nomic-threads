@@ -15,8 +15,7 @@ Pattern::Pattern() :
   mPaths({settings::pattern0,settings::pattern1,settings::pattern2,settings::pattern3,settings::pattern4,settings::pattern5,settings::pattern6,settings::pattern7,settings::pattern8,settings::pattern9}),
   mData(), 
   mEntry(),
-  mEntryFlag(false) // mMEntryFlag
-  // patternIterator(mPatterns.begin())
+  mEntryFlag(false) // mMEntryFlag 
 {
   mEntry.date = 0;
   mEntry.amount = 0;
@@ -32,7 +31,7 @@ void Pattern::setUp() {
       std::cout << "Error: pattern image " << *it << " could not be opened" << std::endl; 
     mOriginals.push_back(image);
   }
-
+  
   // setUp mData retreiving
   mData.setUp();
   
@@ -41,45 +40,71 @@ void Pattern::setUp() {
 
   // retrieve first entry and encode first block
   int nextValue = nextEntry();
-  mPatterns.push_back(encode(nextValue));
+  encode(nextValue);
+}
+
+// ============================= savePosition ============================== 
+void savePosition() {
+	// mData.savePosition();
+	
+	std::string = settings::absolutePath.append("/data/savedMat.png");
+	
+	cv::Mat destination();
+	// for (std::vector<std::vector<Segment> >::iterator it = mPatterns.begin(); it != mPatterns.end(); ++it) {
+// 		cv::Mat roi = (it->getMat())(cv::Rect(0,it->getRowIndex(),it->getWidth(),it->getMat()->rows));
+// 		
+// 	}
+	while (std::any_of(mPatterns.begin(), mPatterns.end(), [](const std::vector<Segment> &seg) {
+		return std::any_of(seg.begin(), seg.end(), [](const Segment &s) {return !(s.done());}))
+		})) {
+		  for (std::vector<std::vector<Segment> >::iterator itPat = mPatterns.begin(); itPat != mPatterns.end(); ++itPat) {
+    		for (std::vector<Segment>::iterator it = itPat->begin(); it != itPat->end(); ++it) {
+      			cv::Mat lineSegment = it->getNextLineSegment();
+      			cv::Mat dest = mOutput(cv::Rect(it->getWidthIndex(),0,it->getWidth(),1));
+      			cv::add(lineSegment,dest,dest); 
+    		}
+  		   }
+  		   destination.push_back(mOutput);
+  }
+  
+  cv::imsave(mOutput,path);
 }
 
 // ============================= nextLine ============================== 
 cv::Mat Pattern::nextLine() {
 
   mOutput = cv::Mat(1,settings::width,CV_8UC1,cv::Scalar(0));
-  
-   
-    // if something is done from the patternIterator and on add new patterns to the existing ones
-    std::vector<Segment> lastPatterns = mPatterns.back();
-    if (std::any_of(lastPatterns.begin(), lastPatterns.end(), [](const Segment &seg) {return seg.done();})) {
-      // retrieve next entry and encode block
-      int nextValue = nextEntry();
-      mPatterns.push_back(encode(nextValue));
-    }
+
+  // if something is done from the patternIterator and on add new patterns to the existing ones
+  std::vector<Segment> lastPatterns = mPatterns.back();
+  if (std::any_of(lastPatterns.begin(), lastPatterns.end(), [](const Segment &seg) {return seg.done();})) {
+    // retrieve next entry and encode block
+    int nextValue = nextEntry();
+    encode(nextValue);
+  }
 	
-    // delete patterns that have ended 
-    for (std::vector<std::vector<Segment> >::iterator it = mPatterns.begin(); it != mPatterns.end(); ++it) {
-      it->erase(std::remove_if( it->begin(), it->end(), [](const Segment &seg){return seg.done();}),it->end());  
-    }
-
-    // draw patterns
-    for (std::vector<std::vector<Segment> >::iterator itPat = mPatterns.begin(); itPat != mPatterns.end(); ++itPat) {
-      for (std::vector<Segment>::iterator it = itPat->begin(); it != itPat->end(); ++it) {
-	cv::Mat lineSegment = it->getNextLineSegment();
-	cv::Mat dest = mOutput(cv::Rect(it->getWidthIndex(),0,it->getWidth(),1));
-	cv::add(lineSegment,dest,dest); 
-      }
-    }
- 
-  // THRESHOLD
-    cv::threshold( mOutput, mOutput, 250, 255, cv::THRESH_BINARY);
-
-  return mOutput;
+  // delete patterns that have ended 
+  for (std::vector<std::vector<Segment> >::iterator it = mPatterns.begin(); it != mPatterns.end(); ++it) {
+    it->erase(std::remove_if( it->begin(), it->end(), [](const Segment &seg){return seg.done();}),it->end());  
   }
 
+  // calculate patterns
+  for (std::vector<std::vector<Segment> >::iterator itPat = mPatterns.begin(); itPat != mPatterns.end(); ++itPat) {
+    for (std::vector<Segment>::iterator it = itPat->begin(); it != itPat->end(); ++it) {
+      cv::Mat lineSegment = it->getNextLineSegment();
+      cv::Mat dest = mOutput(cv::Rect(it->getWidthIndex(),0,it->getWidth(),1));
+      cv::add(lineSegment,dest,dest); 
+    }
+  }
+
+  // THRESHOLD
+  cv::threshold( mOutput, mOutput, 250, 255, cv::THRESH_BINARY);
+
+  return mOutput;
+}
+
 // ============================= nextEntry ============================== 
-  int Pattern::nextEntry() {
+int Pattern::nextEntry() {
   int result;
   if (!mEntryFlag) {
     mEntry = mData.nextEntry();
@@ -93,11 +118,12 @@ cv::Mat Pattern::nextLine() {
 }
 
 // ============================= encode ============================== 
-std::vector<Segment> Pattern::encode(int number) {
+void Pattern::encode(int number) {
+
   // count digits and call distribute()
   int number_of_digits = (int)log10(number) + 1;
   std::vector<unsigned int> widths;
-  widths = distribute(number_of_digits);
+  widths = distribute(number_of_digits); 
 
   // this vector will hold all heights so as to calculate the mChangeIndex and the mMaxHeight
   std::vector<unsigned int> heights;
@@ -118,7 +144,6 @@ std::vector<Segment> Pattern::encode(int number) {
     cv::resize(pat, pat, size);
     // invert
     cv::threshold( pat, pat, 10, 255, cv::THRESH_BINARY_INV); 
-    //     cv::threshold( pat, pat, 254, 255, cv::THRESH_BINARY_INV); 
     // push_back
     Segment seg(pat,widthIndex);
     widthIndex += x;
@@ -126,12 +151,12 @@ std::vector<Segment> Pattern::encode(int number) {
     // push_back height
     heights.push_back(pat.rows);
   }
-  
-  return result;
+  mPatterns.push_back(result);
 }
 
 // ============================= distribute ============================== 
 std::vector<unsigned int> Pattern::distribute(int parts) {
+
   int sum = settings::width;
   std::vector<unsigned int> result;
   for (int i = parts; i>0; i--) {
@@ -153,3 +178,5 @@ int Pattern::random(int min, int max) {
   int result = (int) ( (max - min) * std::rand() / (float) RAND_MAX + min); 
   return result;
 }
+
+

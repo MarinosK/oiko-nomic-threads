@@ -51,14 +51,20 @@ Segment Segment::operator=(const Segment& seg) {
 
 
 // ============================= getWidth ============================
-unsigned int Segment::getWidth() {
+unsigned int Segment::getWidth() const {
   return mWidth;
 }
 
 // ============================= getWidthIndex ============================
-unsigned int Segment::getWidthIndex() {
+unsigned int Segment::getWidthIndex() const {
   return mWidthIndex;
 }
+
+// ============================= getRowIndex ============================
+unsigned int Segment::getRowIndex() const {
+  return mRowIndex;
+}
+
 
 // ============================= getNextLine ============================
 const cv::Mat Segment::getNextLineSegment() {
@@ -81,4 +87,8 @@ bool Segment::done() const {
   return mDoneFlag;
 }
 
+// ============================= getMat ============================
+const cv::Mat& Segment::getMat() const {
+  return mPattern;
+}
 

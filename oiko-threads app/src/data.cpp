@@ -68,9 +68,11 @@ Entry Data::nextEntry() {;
 #ifdef dual_mode
   osc_communication::sendOsc("Data entry retrieved successfully.");
   std::string str = "Date: ";
-  osc_communication::sendOsc(str.append(itos(entry.date)));
+  std::string date = static_cast< std::ostringstream* > ( &(std::ostringstream() << entry.date ) )->str();
+  osc_communication::sendOsc(str.append(date));
   str = "Amount: ";
-  osc_communication::sendOsc(str.append(itos(entry.ammount)));
+  std::string amount = static_cast< std::ostringstream* > ( &(std::ostringstream() << entry.date ) )->str();
+  osc_communication::sendOsc(str.append(amount));
 #endif
   // return data
   return entry;

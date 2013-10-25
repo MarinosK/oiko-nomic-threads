@@ -207,17 +207,17 @@ void gCalculateDirectionAndEndOfLine() {
   }
   
   // debug print
-//  Serial.print(gDirection);
-//  Serial.print("  ");
-//  Serial.print(gEndOfLine);
-//  Serial.print("  ");
-//  Serial.print(gLeft);
-//  Serial.print("  ");
-//  Serial.print(gRight);
-//  Serial.print("  ");
-//  Serial.print(gLeftSensorValue);
-//  Serial.print("  ");
-//  Serial.println(gRightSensorValue);
+  Serial.print(gDirection);
+  Serial.print("  ");
+  Serial.print(gEndOfLine);
+  Serial.print("  ");
+  Serial.print(gLeft);
+  Serial.print("  ");
+  Serial.print(gRight);
+  Serial.print("  ");
+  Serial.print(gLeftSensorValue);
+  Serial.print("  ");
+  Serial.println(gRightSensorValue);
 };
 
 void gResetEncoderPosition() {

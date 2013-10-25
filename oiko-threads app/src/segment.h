@@ -23,10 +23,12 @@ class Segment {
   unsigned int mRowIndex;
   bool mDoneFlag;
  public:
-  unsigned int getWidth();
-  unsigned int getWidthIndex();
+  unsigned int getWidth() const;
+  unsigned int getWidthIndex() const;
+  unsigned int mRowIndex() const;
   const cv::Mat getNextLineSegment();
   bool done() const;
+  const cv::Mat& getMat() const;
   explicit Segment(); // Ctor
   explicit Segment(const cv::Mat&, unsigned int); // Ctor
   Segment(const Segment&); // copy Ctor

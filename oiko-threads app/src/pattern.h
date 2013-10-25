@@ -33,7 +33,6 @@ class Pattern {
  private:
   cv::Mat mOutput;	 // the output line (nextLine() returns this)
   std::vector<cv::Mat> mOriginals;  // vector with the original patterns
-  // std::vector<Segment> mPatterns;   // a vector of patterns to use
   std::vector<std::vector<Segment> > mPatterns;
   std::vector<std::string> mPaths; // the paths of the image files
   Data mData;		      // the data retrieving object
@@ -44,15 +43,15 @@ class Pattern {
   int nextEntry();    // return next entry (be it date or amount)
   bool testIfDone(const Segment&);
 
-  std::vector<Segment> encode(int); // encode entries to an array of normalized patterns
+  void encode(int); // encode entries to an array of normalized patterns
 
   std::vector<unsigned int> distribute(int parts); // calculates the distribution of the numbers -> check README.md
   int random(int,int);	  // random numbers in a min/max range
  
  public:
+ void savePosition();
   void setUp();
   cv::Mat nextLine();	   // retrieves data, encodes them and outputes next line for displaying/knitting
-
   explicit Pattern(); // explicit ctor
   Pattern(const Pattern&) =delete; 
   Pattern& operator=(const Pattern&) =delete;

@@ -27,13 +27,16 @@ private:
   Controller *arduino;
   bool portOpen;
   cv::Mat nextLine;
+  short counter;
 public:
   OikoThreadsAggregate() : 
     pattern(new Pattern),
+    // visualizer(new Visualizer(1680, 500)),
     visualizer(new Visualizer(1680, 1020)),
     arduino(new Controller),
     portOpen(false),
-    nextLine()
+    nextLine(),
+    counter(0)
   {
   }
   explicit OikoThreadsAggregate(int width, int height) : 
@@ -41,7 +44,9 @@ public:
     visualizer(new Visualizer(width,height)),
     arduino(new Controller),
     portOpen(false),
-    nextLine() {
+    nextLine(),
+    counter(0)
+     {
   }
   ~OikoThreadsAggregate() {
     delete pattern;
@@ -57,20 +62,28 @@ public:
   void loop() {
     if (portOpen) { // if there is a connection
       nextLine = pattern->nextLine(); // retrieve nextLine
-      arduino->sendMsg(nextLine); // setUp solenoids
-      arduino->waitForMsg(); // wait for responce
-      visualizer->animate(nextLine); // animate next line
-      #ifndef demo_mode
+      cv::Mat knitLine  = nextLine;
+      cv::resize(knitLine,knitLine,cv::Size(settings::knitWidth,1));
+#ifndef demo_mode
+      if (counter == 0) {
+	arduino->sendMsg(knitLine); // setUp solenoids; // animate next line
+	// arduino->sendMsg(nextLine); // setUp solenoids; // animate next line
+	arduino->waitForMsg(); // wait for responce
+     }
+#endif
+      visualizer->animate(nextLine);
       cv::waitKey(settings::speed); 
-      #endif
-      #ifdef demo_mode
-      cv::waitKey(settings::speed); 
-      #endif
-      // test 
-      // osc_communication::sendOsc("test");
+      if (counter > 10) {
+	counter = 0;
+      } else {
+	++counter;
+      }
     } else {
       std::cout << "Communication with the machine interrupted !" << std::endl;   
     }
+  }
+  void savePosition() {
+  	pattern->savePosition();
   }
 };
 
@@ -78,7 +91,7 @@ public:
 int main( int argc, char** argv ) {
 
   // preample credits
-  std::cout << "\n*****\nOiko-nomic Threads \ninstallation for algorithmically controlled knitting machine and open data \n(c) 2013 Marinos Koutsomichalis, Maria Varela, Afroditi Psara\n*****\n" << std::endl;
+  std::cout << "\n*****\nOiko-nomic Threads \ninstallation for algorithmically controlled knitting machine and open data \n(c) 2013 Marinos Koutsomichalis, Maria Varela, Afroditi Psarra\n*****\n" << std::endl;
 
   std::cout << "press q (and <return>) to quit.\n" << std::endl;
   std::cout << "starting..\n" << std::endl;
@@ -95,7 +108,10 @@ int main( int argc, char** argv ) {
   std::thread thread([&](){
       while(1) {
 	char input = std::cin.get();
-	if (input == 'q')  { run = false; }
+	if (input == 'q')  { 
+		program->savePosition();
+		run = false; 
+		}
       }
     });
   thread.detach(); // detach thread
