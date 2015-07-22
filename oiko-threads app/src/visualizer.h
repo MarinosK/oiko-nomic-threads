@@ -3,42 +3,45 @@
   Oikonomic Threads (c) 2013 Marinos Koutsomichalis, Maria Varela, Afroditi Psarra. 
   Installation for algorithmically controlled knitting machine and open data
 */
+#ifndef VISUALIZER_H
+#define VISUALIZER_H
 
-// displays image output on the screen
-
-#pragma once
-
-#include <iostream>
 #include <string>
+#include <sstream>
 #include <ctime>
-
 #include <boost/lexical_cast.hpp>
+#include <opencv2/opencv.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include "helper.h"
+#include "decoration.h"
 
-#include "opencv2/opencv.hpp"
-#include "opencv2/highgui/highgui.hpp"
-
-#include "pattern.h"
-
-#include "mar_utils.h"
-
-#include "sendOsc.h"
-
+/// Visualizer is responsible for the GUI and for processing all visualization requests (including the live demo and exporting stills)
 class Visualizer {
 private:
-  const int mWidth, mHeight;       // width and height..
-  const  int mLineHeight;   // factor to calculate resizing (for animation)
-  int mStillsIndex;	    // an index for the stills 
-  cv::Mat mImage;		    // matrix to update for animation
-  std::string getCurrentDate();     // return current date (used to name Stills)
+  const unsigned mWidth, mHeight;  
+  const unsigned mLineHeight;  // factor to proportionally scale the animation
+  cv::Mat mDisplay;	       
+  std::string getCurrentDate() const;  // used to name Stills
+  cv::Mat makeStill(Decoration&, unsigned, unsigned);
+  short stillCounter;
  public:
-  explicit Visualizer(); // ctor
-  explicit Visualizer(const unsigned int width, const unsigned int height); // ctor
-  ~Visualizer();  // dtor
+  /// constructor 
+  Visualizer(const unsigned width, const unsigned height); // ctor
+  /// default constructor
+  Visualizer() : Visualizer(settings::width, settings::height) {};
+  /// destructor
+  ~Visualizer();
   Visualizer(const Visualizer&) =delete;
+  Visualizer(Visualizer&&) =delete;
   Visualizer& operator=(const Visualizer&) =delete; 
+  Visualizer& operator=(Visualizer&&) =delete; 
 
-  void animate(cv::Mat mat);
-  void still(Pattern &pattern, int lines);    	// display mats with highGUI
-  void exportStill(Pattern &pattern, int lines );
-  void test(cv::Mat);				// display matrix	   
+  /// add a new line to the GUI Animation
+  void addLine(cv::Mat mat);
+  /// make and show a still image of n lines  
+  void showStill(Decoration &decoration, unsigned lines, unsigned width);
+  /// make and export a still image of n lines
+  void exportStill(Decoration &decoration, unsigned lines,unsigned width);
 };
+
+#endif

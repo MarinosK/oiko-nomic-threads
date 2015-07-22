@@ -1,5 +1,4 @@
-// this file has been originally written by Tod E. Kurt, http://todbot.com/blog/ and adapted in C++ by Marinos Koutsomichalis (www.marinoskoutsomichalis.com) for the purposes of the Oiko-Nomic Threads project - modifications have been minor, therefore all credits should be reserved for Tod E. Kurt
-
+// this file has been originally written by Tod E. Kurt, http://todbot.com/blog/ and adapted in C++ by Marinos Koutsomichalis (www.marinoskoutsomichalis.com) for the purposes of the Oiko-Nomic Threads project 
 
 #include "arduino-serial-lib.h"
 
@@ -11,8 +10,7 @@
 // opens the port in fully raw mode so you can send binary data.
 // returns valid fd, or -1 on error
 
-int arduino_lib::serialport_init(const char* serialport, int baud)
-{
+int arduino_lib::serialport_init(const char* serialport, int baud) {
   struct termios toptions;
   int fd;
     

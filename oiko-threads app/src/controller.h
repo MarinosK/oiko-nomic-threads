@@ -1,55 +1,40 @@
-/* controller.h */
-
 /*
   Coded by Marinos Koutsomichalis for the Oikonomic Threads projects.
   Oikonomic Threads (c) 2013 Marinos Koutsomichalis, Maria Varela, Afroditi Psarra. 
   Installation for algorithmically controlled knitting machine and open data
 */
 
-// sender sends messages to arduino
-
-// listener listens for incoming messages
-
 #ifndef _CONTROLLER_H
 #define _CONTROLLER_H 1
 
-#include <cstdio>
-#include <string>
-#include <cstddef>
-#include <limits>
-#include <iostream>
-
+#include <sstream>
 #include "opencv2/opencv.hpp"
-#include "mar_utils.h"
-
 #include "arduino-serial-lib.h"
-#include "settings.h"
+#include "helper.h"
 
-#include "sendOsc.h"
+/// overloaded operator<< (reads pixels from a cv::mat to an ostream)
+std::ostream& operator<< (std::istream &os, cv::Mat &rhs);
 
+/// Controller is responsible for all IO communication with the knitting machine 
 class Controller {
  private:
-  static std::string arduinoID; // arduino path
-  const int mBaudRate; // baudrate
+  static const std::string arduinoID; 
+  static constexpr int mBaudRate {settings::baudRate};
   int mFd; // the serial file
-  bool findPath();  // find arduino port's path and save it at arduinoID
  public:
-  bool setUp();
-  inline const std::string& getPath() const; // accessor
-  bool sendMsg(const cv::Mat&); // send pattern to arduino
+  /// send a knitting pattern to the machine
+  bool sendMsg(const cv::Mat&);
+  /// wait for the machine to respond
   bool waitForMsg(); // read message
-
-  explicit Controller(); // Ctor
-  explicit Controller(int); // Ctor with baudrate
+  /// constructor
+  Controller(); // Ctor
+  /// destructor
   ~Controller(); // Dtor
-  Controller(const Controller&) =delete; // no copy Ctor
-  Controller& operator= (const Controller&) =delete; // no operator=
+  Controller(const Controller&) =delete; 
+  Controller(Controller&&) =delete; 
+  Controller& operator= (const Controller&) =delete; 
+  Controller& operator= (Controller&&) =delete; 
 };
-
-// inline member functions here
-const std::string& Controller::getPath() const { 
-  return arduinoID;
-}
 
 #endif /* _CONTROLLER_H */
 

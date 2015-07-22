@@ -1,94 +1,62 @@
 
-/*
-  Coded by Marinos Koutsomichalis for the Oikonomic Threads projects.
-  Oikonomic Threads (c) 2013 Marinos Koutsomichalis, Maria Varela, Afroditi Psarra. 
-  Installation for algorithmically controlled knitting machine and open data
-*/
-
 #include "segment.h"
 
-// ============================= constructors ============================
-
+// ======================== c/d-tors/operator=/ ========================
 Segment::Segment() : 
-  mPattern(),
-  mWidthIndex(0),
-  mWidth(0),
-  mRowIndex(0),
-  mDoneFlag(false)
-{ 
-}
+  mPattern {},
+  mPositionIndex {0},
+  mWidth {0},
+  mRowIndex {0},
+  mDoneFlag {false} { }
 
-Segment::Segment(const cv::Mat &pattern, unsigned int widthIndex) :
-  mPattern(pattern),
-  mWidthIndex(widthIndex),
-  mWidth(pattern.cols),
-  mRowIndex(0),
-  mDoneFlag(false)
-{
-}
+Segment::Segment(const cv::Mat& pattern, unsigned positionIndex) :
+  mPattern {pattern},
+  mPositionIndex {positionIndex},
+  mWidth {static_cast<unsigned>(pattern.cols)},
+  mRowIndex {0},
+  mDoneFlag {false} {}
 
 Segment::Segment(const Segment& seg) :
-  mPattern(seg.mPattern),
-  mWidthIndex(seg.mWidthIndex),
-  mWidth(seg.mWidth),
-  mRowIndex(seg.mRowIndex),
-  mDoneFlag(seg.mDoneFlag)
-{  
-} 
+  mPattern {seg.mPattern},
+  mPositionIndex {seg.mPositionIndex},
+  mWidth {seg.mWidth},
+  mRowIndex {seg.mRowIndex},
+  mDoneFlag {seg.mDoneFlag} {}
 
-// ============================= operator= ============================
+Segment::Segment(Segment&& seg) :
+  mPattern {std::move(seg.mPattern)},
+  mPositionIndex {std::move(seg.mPositionIndex)},
+  mWidth {std::move(seg.mWidth)},
+  mRowIndex {std::move(seg.mRowIndex)},
+  mDoneFlag {std::move(seg.mDoneFlag)} { }
 
 Segment Segment::operator=(const Segment& seg) {
   if (&seg != this) {
     mPattern = seg.mPattern;
-    mWidthIndex = seg.mWidthIndex;
+    mPositionIndex = seg.mPositionIndex;
     mWidth = seg.mWidth;
     mRowIndex = seg.mRowIndex;
     mDoneFlag = seg.mDoneFlag;
   }
   return *this;
+}
+
+Segment Segment::operator=(Segment&& seg) {
+  assert(this != &seg);
+  mPattern = std::move(seg.mPattern);
+  mPositionIndex = std::move(seg.mPositionIndex);
+  mWidth = std::move(seg.mWidth);
+  mRowIndex = std::move(seg.mRowIndex);
+  mDoneFlag = std::move(seg.mDoneFlag);
+  return *this;
 } 
-
-
-// ============================= getWidth ============================
-unsigned int Segment::getWidth() const {
-  return mWidth;
-}
-
-// ============================= getWidthIndex ============================
-unsigned int Segment::getWidthIndex() const {
-  return mWidthIndex;
-}
-
-// ============================= getRowIndex ============================
-unsigned int Segment::getRowIndex() const {
-  return mRowIndex;
-}
-
 
 // ============================= getNextLine ============================
 const cv::Mat Segment::getNextLineSegment() {
-
-	// test pattern
-  // cv::namedWindow( "Test");
-//   cv::imshow( "Test", mPattern );
-//   cv::waitKey(0);  
-
-  if (mRowIndex < (mPattern.rows-1)) {
-    return mPattern(cv::Rect(0,mRowIndex++,mWidth,1)); // notice mRowIndex is incremented 
-  } else {
+  if (mRowIndex != (mPattern.rows - 1))
+    return mPattern(cv::Rect(0,mRowIndex++,mWidth,1));
+  else { // when done just keep returning the last line
     mDoneFlag = true;
     return mPattern(cv::Rect(0,mRowIndex,mWidth,1));
   }
 }
-
-// ============================= done ============================
-bool Segment::done() const {
-  return mDoneFlag;
-}
-
-// ============================= getMat ============================
-const cv::Mat& Segment::getMat() const {
-  return mPattern;
-}
-

@@ -1,79 +1,67 @@
-/*
-  Coded by Marinos Koutsomichalis for the Oikonomic Threads projects.
-  Oikonomic Threads (c) 2013 Marinos Koutsomichalis, Maria Varela, Afroditi Psarra. 
-  Installation for algorithmically controlled knitting machine and open data
-*/
 
 #include "data.h"
 
-// ============================= Constructor ============================== 
-Data::Data() :
-  // init list
-  pointer(0),
-  end(0)
-{
-  // nothing here
+// ================================ Entry ================================
+
+bool Entry::getNextDigit(unsigned& rhs) {
+  if (boost::logic::indeterminate(doneReadingBothMembers)) {
+    rhs = date;
+    doneReadingBothMembers = false;
+    return true;
+  } else if (!doneReadingBothMembers) {
+    rhs = amount;
+    doneReadingBothMembers = true;
+    return false;
+  } else // if (doneReadingBothMembers)
+    helper::myThrow<std::logic_error>
+      ("Entry: both members have been already read");
 }
 
-// ============================= setUp ============================== 
-void Data::setUp() {
-  // open file
-  std::ifstream myfile (settings::filename, std::ios::in | std::ios::ate);
-  if (myfile.is_open()) {
-    // calculate end of file
-    end = myfile.tellg();
-    myfile.close();
-  }
+// ========================= overload operator>> =========================
+
+std::istream& operator>> (std::istream &is, Entry &rhs) {
+  char delim;
+  std::string str;
+  std::getline(is, str);
+  std::istringstream sstream {str};
+  unsigned date{}, amount{};
+  sstream >> date >> delim >> amount;
+  rhs.setDate(date);
+  rhs.setAmount(amount);
+  return is;
 }
+
+// ============================= Constructors ============================
+Data::Data(const std::string& filename) :
+  dataFile {filename},
+  entries {},
+  iterator {},
+  currentEntry {} {
+    if (!dataFile)
+      helper::myThrow<std::runtime_error>
+	("failed to open "+filename+" data file");
+    Entry e{};
+    while (dataFile >> e) entries.emplace_back(e);
+    dataFile.close();
+    iterator = entries.begin();
+    currentEntry = nextEntry();
+  }
 
 // ============================= nextEntry ============================== 
-Entry Data::nextEntry() {;
-  std::string rawDate; 
-  std::string rawAmount;
-  Entry entry;
-  std::ifstream myfile (settings::filename, std::ios::in);      // open file 
-  std::cout << "Attempting to retrieve next data enrtry." << std::endl;
-#ifdef dual_mode
-  osc_communication::sendOsc("Attempting to retrieve next data enrtry.");
-#endif
-  if (myfile.is_open()) {
-    myfile.seekg (pointer, std::ios::beg);	    // set pointer to next entry
-    char next;
-    // read date
-    while(myfile.get(next)) {
-      if (next != ',')  {  
-	rawDate += next;
-      } else {
-	break;  
-      }              
-    }
-    entry.date = std::stoi(rawDate.c_str());
-    // read amount
-    while(myfile.get(next)) {
-      if (next != '\n')  {  
-	rawAmount += next;
-      } else {
-	// update pointer
-	pointer =  myfile.tellg();
-	if (pointer >= end) pointer = 0;
-	break;  
-      }              
-    }
-    entry.amount = std::stoi(rawAmount.c_str());    
-    myfile.close();		        // close file
-  } else {
-    std::cout << "Error: could not read entry from file - file not open" << std::endl;
-  }
-  std::cout << "Data entry retrieved successfully.\nDate: " << entry.date << "\nAmount: " << entry.amount << std::endl;
-#ifdef dual_mode
-  osc_communication::sendOsc("Data entry retrieved successfully.");
-  std::string str = "Date: ";
-  std::string date = static_cast< std::ostringstream* > ( &(std::ostringstream() << entry.date ) )->str();
-  osc_communication::sendOsc(str.append(date));
-  str = "Amount: ";
-  std::string amount = static_cast< std::ostringstream* > ( &(std::ostringstream() << entry.date ) )->str();
-  osc_communication::sendOsc(str.append(amount));
-#endif
-  // return data
-  return entry;
+Entry Data::nextEntry() {
+  if (iterator == entries.end()) iterator = entries.begin();
+  return *(iterator++);
 }
+
+// ============================== nextDigit ==============================
+
+unsigned Data::nextDigit() {
+  helper::log("retrieving next data entry");
+  unsigned digit{};
+  if (!currentEntry.getNextDigit(digit)) currentEntry = nextEntry();
+  std::ostringstream message{};
+  message << digit << " " << "has been retrieved";
+  helper::log(message.str());
+  return digit;
+}
+

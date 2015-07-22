@@ -12,24 +12,48 @@ stereochic [at] gmail.com
 m.mivon [at] gmail.com
 
 DESCRIPTION:
-Hardware and software related with OIKO-NOMIC THREADS installation art project.  The oiko-threads command-line app retrieves data from a file, encodes them with respect to a complex algorithm and a database of ethnological motiffs and controls algorithmically a hacked knitting machine (Brother 950i model).  The Brother 950i knitting machine was heavily hacked: 'brain' of the machine was completely removed (along with many other elecronics parts) and substituted by an Arduino DUE running custom firmware that communicates with the oiko-threads app, informs the latter of the K-carriage's position and encodes image data sent by it into electronic/mechanical operations that will eventually knit patterns into a piece of fabrik. Details follow>
+Software related with OIKO-NOMIC THREADS installation art project.  The oiko-threads command-line app retrieves data from a file, encodes them with respect to algorithmic instructions and a database of traditional motiffs and controls algorithmically a hacked knitting machine (Brother 950i model).  The Brother 950i knitting machine was heavily hacked: 'brain' of the machine was completely removed (along with many other elecronics parts) and substituted by an Arduino DUE running custom firmware that communicates with the oiko-threads app, informs the latter of the K-carriage's position and encodes image data sent by it into electronic/mechanical operations that will eventually knit patterns into a piece of fabrik. Details follow>
+
+dumpOsc app:
+Just a dump osc receiver app in C++; used for testing purposes and in DUAL_MODE. 
 
 
 OIKO_THREADS APP:
 
 General Information:
-* designed and implemented by Marinos Koutsomichalis in C++ using STL, Boost and openCV headers and libraries.
-* the application is tested and reported to work in Mac Os X 10.8 operating system
-* in theory the application can be ported easily to other operating systems, yet it is not cross platform at its present form.
-To Compile/Use: 
-* openCV, Boost and g++ should be installed and configured
-* edit makefile to make sure that all the flags are set according to your specific configuration
-* Settings.h/.cpp is hard-coded to point at specific file names (10 motiffs and a dataset), you will definitely need to change this if you plan to work will different file-names or paths.
-* header file mar_utils.h is not included but it's not really essential, just comment it out from all header files - it only contains some macro definitions used for Debuging only. At some point reference to the header will be deleted. 
-* use make and a binary will be created in the application folder
-* remember to put all the required files into the data folder
-* the dataset should be a csv file (named PSGR.csv if Settings.h is left untouched) containing lists of dates and ammounts (formated as YYYYMMDD, AMMOUNT) with no blank or text lines
-* the raw patterns to be used should be in .png format
+* designed and implemented by Marinos Koutsomichalis in C++14 using STL, Boost and openCV.
+* the application is tested and reported to work in Mac Os X 10.8 operating system with clang
+* in its current form the application is not cross platform.
+
+To Compile:
+Given that xcode, xcode-tools, cmake, doxygen, openCV, Boost and clang is installed, try:
+
+cd oiko-threads app
+mkdir build
+cd build
+cmake <OPTIONS> ..
+make
+
+this will create an Install folder with the executable, the data assets, some tests and the auto-generated documentation. Options are as follows:
+
+    * -DCMAKE_BUILD_TYPE=Debug or =Release -> to switch between debug/release builds,default it Release
+    * -DEMULATION_MODE=ON -> for a video only version (no machine interaction)
+    * -DDUAL_MODE=ON -> also sends stdout via OSC (dumpOsc listens to this stream); for use when the host computer does no support dual screen mode.
+    * -DTEST_MODE=OFF -> do not compile/run the tests
+    * -DBUILD_DOCUMENTATION=OFF -> do not generate documentation
+
+more, there are a number of important constants that can be defined in compile time
+
+    * -DWIDTH            -> projection width
+    * -DHEIGHT           -> projection height
+	* -DOSC_PATH         -> OSC IP address
+	* -DBAUD_RATE        -> default baud rate 
+	* -DGUI_WINDOW_NAME  -> used internally
+	* -DOSC_PORT         -> OSC port
+	* -DSPEED            -> animation speed (emulation_mode), wait time (nromal mode)
+	
+To Use:
+Given that everything is properly connected and that the firmaware is loaded to the machine, just run the oiko-threads app. Custom width, height and speed can be set as arguments to the executable.
 
 ---- Algorith Description and Flow Diagram ----
 
@@ -53,13 +77,12 @@ ARDUINO FIRMWARE:
 General Information:
 * designed and implemented by Marinos Koutsomichalis and Afroditi Psarra.
 * the code will update the position of the solenoids according to messages received from over Serial from the oiko-threads app and will respond when succesfully done so. 
-* due to certain technical restrictions only a certain range of needles is used in the machine, namely 16-175.  
-* [..to be edited ]
-
+* due to certain technical restrictions only a certain range of needles is used in the machine, namely 16-175.
 
 HARDWARE:
 General Information:
 * designed and implemented by Maria Varela, Afroditi Psarra and Marinos Koutsomichalis
 * of invaluable help has been PCB designs and instructions ditributed by the Knitic Project (https://github.com/mcanet/knitic) (with thanks)
+
 Instructions/Implementation
-* [..to be edited ]
+* [..to be continued...]
