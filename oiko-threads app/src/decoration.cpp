@@ -3,7 +3,7 @@
 
 // ============================= constructor ============================ 
 Decoration::Decoration() :
-  mPaths {settings::pathsToMottifsForShowing},
+  mPaths {settings::pathsToOriginalMottifs},
   mData {settings::dataFile}, 
   mOriginals {},
   mPatterns {} {

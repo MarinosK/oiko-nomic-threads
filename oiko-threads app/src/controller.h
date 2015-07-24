@@ -8,12 +8,12 @@
 #define _CONTROLLER_H 1
 
 #include <sstream>
-#include "opencv2/opencv.hpp"
+#include <opencv2/opencv.hpp>
 #include "arduino-serial-lib.h"
 #include "helper.h"
 
 /// overloaded operator<< (reads pixels from a cv::mat to an ostream)
-std::ostream& operator<< (std::istream &os, cv::Mat &rhs);
+std::ostringstream& operator<< (std::ostringstream&, cv::Mat&);
 
 /// Controller is responsible for all IO communication with the knitting machine 
 class Controller {

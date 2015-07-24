@@ -18,10 +18,10 @@ Controller::~Controller() {
 }
 
 // ============================= operator<< =============================
-std::ostream& operator<< (std::ostream &os, cv::Mat& mat) {
-  for (int i = mat.cols; i >= 0; --i) {
+std::ostringstream& operator<< (std::ostringstream& os, cv::Mat& mat) {
+  for (int i = 0; i< mat.cols; ++i) {
     uchar bit {mat.at<uchar>(0, i)};
-    if (bit==0) os << '0'; else os << '1';
+    if (bit==0) os << 0; else os << 1;
   } 
   return os;
 }
@@ -37,7 +37,7 @@ bool Controller::sendMsg(const cv::Mat& mat) {
   } else {
     std::ostringstream data{};
     data << mat;
-    if (arduino_lib::serialport_write(mFd, data.str().c_str()))
+    if (!arduino_lib::serialport_write(mFd, data.str().c_str()))
       return true;
     else {
       helper::log("error sending the pixels to the machine");

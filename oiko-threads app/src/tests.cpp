@@ -2,9 +2,11 @@
 #include <gmock/gmock.h>
 #include <vector>
 #include <string>
+#include <sstream>
 #include <numeric>
 #include <exception>
 #include <mar_utils.h>
+#include <opencv2/opencv.hpp>
 #include "data.h"
 #include "helper.h"
 #include "controller.h"
@@ -68,13 +70,21 @@ TEST(MarRandom, CorrectlyReturnRandomNumbers) {
 //   Controller ctrl{};
 // }
 
-// TEST_F(ControllerTest, CorrectOperator<<) {
-  
-// }
+TEST(ControllerTest, CorrectOsOperator) {
+   cv::Mat mat{
+     1,static_cast<int>(settings::knitWidth),CV_8UC1,cv::Scalar(0) };
+   for (int pix = 50; pix < mat.cols; ++pix) mat.at<uchar>(0, pix) = 250;
+   std::ostringstream str{};
+   str << mat;
+   std::ostringstream test{};
+   std::string a (50,'0');
+   std::string b (mat.cols-50,'1');
+   test << a << b;
+   ASSERT_STREQ(test.str().c_str(), str.str().c_str());
+}
 
 int main(int argc, char** argv) {
   testing::InitGoogleMock(&argc, argv);
   std::cout.rdbuf(nullptr); // supress cout
   return RUN_ALL_TESTS();
 }
-

@@ -11,10 +11,10 @@ set (SOURCES       src/helper.cpp
 		   src/segment.cpp
 		   src/controller.cpp
 		   src/visualizer.cpp
+		   lib/arduino-serial-lib
 		   )
 set (APP_SOURCES   src/oiko-threads.cpp		   
-	           src/oikoThreadsApp.cpp
-	           lib/arduino-serial-lib)
+	           src/oikoThreadsApp.cpp)
 set (TEST_SOURCES  src/tests.cpp
                    lib/gmock-all.cc
 		   lib/gtest-all.cc)		 

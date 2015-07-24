@@ -20,6 +20,18 @@ static const std::string getAbsolutePath() {
   return full_path.string();
 }
 
+/// static helper function: fills vector with the paths of the original motifs
+static std::vector<const std::string>
+getVectorWithPathsToOriginalMottifs() {
+  std::vector<const std::string> result;
+  for (int i=0; i<10; ++i) {
+    std::ostringstream path{};
+    path << "/data/" << i << ".png";
+    result.emplace_back(appendPath(getAbsolutePath(), path.str()));
+  }
+  return result;
+}
+
 // ========================== runtime constants ==========================
 
 #ifndef EMULATION_MODE
@@ -29,28 +41,9 @@ const std::string settings::hardwarePath {};
 #endif
 
 const std::string settings::dataFile = appendPath(getAbsolutePath(),"data/PSGR.csv");  // the filename to use
-const std::vector<const std::string> settings::pathsToMottifsForShowing {
-    appendPath(getAbsolutePath(), "/data/0.png"),
-    appendPath(getAbsolutePath(), "/data/1.png"),
-    appendPath(getAbsolutePath(), "/data/2.png"),
-    appendPath(getAbsolutePath(), "/data/3.png"),
-    appendPath(getAbsolutePath(), "/data/4.png"),
-    appendPath(getAbsolutePath(), "/data/5.png"),
-    appendPath(getAbsolutePath(), "/data/6.png"),
-    appendPath(getAbsolutePath(), "/data/7.png"),
-    appendPath(getAbsolutePath(), "/data/8.png"),
-    appendPath(getAbsolutePath(), "/data/9.png") };
-const std::vector<const std::string> settings::pathsToMottifsForKniting {
-    appendPath(getAbsolutePath(), "/data/knit0.png"),
-    appendPath(getAbsolutePath(), "/data/knit1.png"),
-    appendPath(getAbsolutePath(), "/data/knit2.png"),
-    appendPath(getAbsolutePath(), "/data/knit3.png"),
-    appendPath(getAbsolutePath(), "/data/knit4.png"),
-    appendPath(getAbsolutePath(), "/data/knit5.png"),
-    appendPath(getAbsolutePath(), "/data/knit6.png"),
-    appendPath(getAbsolutePath(), "/data/knit7.png"),
-    appendPath(getAbsolutePath(), "/data/knit8.png"),
-    appendPath(getAbsolutePath(), "/data/knit9.png") };
+
+const std::vector<const std::string> settings::pathsToOriginalMottifs {
+  getVectorWithPathsToOriginalMottifs() };
 
 // ========================== helper functions ==========================
 

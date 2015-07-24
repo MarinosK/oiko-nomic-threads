@@ -60,9 +60,7 @@ namespace settings {
   /// the path of the data-file
   extern const std::string dataFile;
   /// the paths to the digital mottifs (screen analysis) 
-  extern const std::vector<const std::string> pathsToMottifsForShowing;
-  /// the paths to the digital mottifs (stitch analysis) 
-  extern const std::vector<const std::string> pathsToMottifsForKniting;
+  extern const std::vector<const std::string> pathsToOriginalMottifs;
 }
 
 /// various helper functions

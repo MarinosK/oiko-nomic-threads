@@ -13,13 +13,12 @@
 /// application aggregate comprised of all the required data structures
 class OikoThreadsApp {
 private:
-  Decoration decoration;
   Visualizer visualizer;
 #ifndef EMULATION_MODE
   Controller arduino;
   short counter;
 #endif
-  cv::Mat nextLine;
+  Decoration decoration;
 public:
   /// construct an object on given dimensions
   OikoThreadsApp(unsigned int width, unsigned int height);
