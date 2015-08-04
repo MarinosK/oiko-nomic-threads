@@ -27,7 +27,6 @@ include_directories(  /opt/local/include
 		      lib/osc
 		      ) 
 link_directories(     /opt/local/lib
-		      # static_libs 
 		      /usr/local/lib )
 set(CMAKE_INSTALL_PREFIX  "${CMAKE_BINARY_DIR}/Install")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Install")

@@ -69,8 +69,7 @@ Pattern Encoding:
 6 calculate a line of pixels (totaling WIDTH) and store it to cv::Mat output / read the pixel values from the normalized patterns and erase lines one by one when read
 7 when some pattern is done and there are no more lines left to read from, repeat steps 1-4
 8 these new cv::Mats should be merged with the remaing cv::Mats (from step 7) and the result should be a new vector of cv::Mats (stored in cv::Mat patterns again) -> Merge should be a bitwise OR operation on binary pixel values (to be implemented somehow)
-9 Repeat steps 6 and 7 
-
+9 Repeat steps 6 and 7
 
 ARDUINO FIRMWARE:
 
@@ -84,5 +83,4 @@ General Information:
 * designed and implemented by Maria Varela, Afroditi Psarra and Marinos Koutsomichalis
 * of invaluable help has been PCB designs and instructions ditributed by the Knitic Project (https://github.com/mcanet/knitic) (with thanks)
 
-Instructions/Implementation
-* [..to be continued...]
+

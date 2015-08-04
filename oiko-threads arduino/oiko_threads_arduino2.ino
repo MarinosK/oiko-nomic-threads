@@ -1,25 +1,25 @@
 // Oiko-nomic Threads 
 /*
-OIKO-NOMIC THREADS An installation for algorithmically controlled 
-knitting machine and open data (c) 2013 Marinos Koutsomichalis, 
-Maria Varela, Afroditi Psarra
+  OIKO-NOMIC THREADS An installation for algorithmically controlled 
+  knitting machine and open data (c) 2013 Marinos Koutsomichalis, 
+  Maria Varela, Afroditi Psarra
 
-Software and Hardware development for Oiko-nomic threads was 
-realized by Marinos Koutsomichalis, Afroditi Psarra and Maria Varela. Related code, texts and images are distributed under the Attribution-NonCommercial-ShareAlike 3.0 Unported Creative Commons Licence (details here: http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US).
+  Software and Hardware development for Oiko-nomic threads was 
+  realized by Marinos Koutsomichalis, Afroditi Psarra and Maria Varela. Related code, texts and images are distributed under the Attribution-NonCommercial-ShareAlike 3.0 Unported Creative Commons Licence (details here: http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US).
 
-THIS MATERIAL IS DISTRIBUTED AS IS WITH NO GUARANTEE OF 
-FUNCTIONALITY OR RELEVANCE TO THIRD PARTY PROJECTS - 
-THE DEVELOPERS ARE THUS NOT TO BE HELD RESPONSIBLE FOR PERSONAL 
-INJURIES, HARDWARE, FINANCIAL, OR ANY OTHER LOSSES AND IN GENERAL 
-FOR ANY MISFORTUNATE EVENT CAUSED BY THE DESCRIBED SOFTWARE/HARDWARE
-OR IN THE PROCESS OF ATTEMPTING TO IMPLEMENT IT. IF YOU DON'T AGREE 
-WITH THE AFOREMENTIONED YOUR ARE NOT ALLOWED TO USE THE MATERIAL 
-PROVIDED HEREIN
+  THIS MATERIAL IS DISTRIBUTED AS IS WITH NO GUARANTEE OF 
+  FUNCTIONALITY OR RELEVANCE TO THIRD PARTY PROJECTS - 
+  THE DEVELOPERS ARE THUS NOT TO BE HELD RESPONSIBLE FOR PERSONAL 
+  INJURIES, HARDWARE, FINANCIAL, OR ANY OTHER LOSSES AND IN GENERAL 
+  FOR ANY MISFORTUNATE EVENT CAUSED BY THE DESCRIBED SOFTWARE/HARDWARE
+  OR IN THE PROCESS OF ATTEMPTING TO IMPLEMENT IT. IF YOU DON'T AGREE 
+  WITH THE AFOREMENTIONED YOUR ARE NOT ALLOWED TO USE THE MATERIAL 
+  PROVIDED HEREIN
 
-Contact: 
-marinos [at] agxivatein.com 
-stereochic [at] gmail.com 
-m.mivon [at] gmail.com
+  Contact: 
+  marinos [at] agxivatein.com 
+  stereochic [at] gmail.com 
+  m.mivon [at] gmail.com
 
 */
 
@@ -116,48 +116,45 @@ void setup() {
 }
 
 // -------------------------------- loop ---------------------------------
-
 void loop() {
-  
   gPrevEndOfLine = gEndOfLine; // set previous end of line
-  
   gCalculateDirectionAndEndOfLine(); // calculate the direction of the carriage
   gResetEncoderPosition();    // reset gEncoderPosition on the endOfLines
   gCalculateStitch(); // calculate stitch
   
-    // if (gMessageReceived) {
-      if (gEndOfLine == 1) {
-        if (gPrevEndOfLine == 0) {
-        // delay(10);
-        Serial.print("done!\n");
-        gPixelsIndex = 16;
-        gMessageReceived = false;
-       }
-     // }
+  // if (gMessageReceived) {
+  if (gEndOfLine == 1) {
+    if (gPrevEndOfLine == 0) {
+      // delay(10);
+      Serial.print("done!\n");
+      gPixelsIndex = 16;
+      gMessageReceived = false;
+    }
+    // }
   }
   
-//  Serial.print(gMessageReceived);
-//  Serial.print("  ");
-//  Serial.print(gPrevEndOfLine);
-//  Serial.print("  ");
-//  Serial.println(gEndOfLine);
-//  
+  //  Serial.print(gMessageReceived);
+  //  Serial.print("  ");
+  //  Serial.print(gPrevEndOfLine);
+  //  Serial.print("  ");
+  //  Serial.println(gEndOfLine);
+    
   gUpdatePixelsSerial(); // update pixels according to serial input  
   
   gSetSolenoids(); // set solenoids accordingly;
  
-//  if (gPendingRequest && (gEndOfLine == 1) && (gPrevEndOfLine == 0)) {
-//    gPendingRequest = false; // send gPendingRequest to false
-//    gPixelsIndex = 16;
-//    Serial.print("done!\n"); // send done to oiko-threads-app  
-//  }
+  //  if (gPendingRequest && (gEndOfLine == 1) && (gPrevEndOfLine == 0)) {
+  //    gPendingRequest = false; // send gPendingRequest to false
+  //    gPixelsIndex = 16;
+  //    Serial.print("done!\n"); // send done to oiko-threads-app  
+  //  }
 
 
   
-    // debug print
-//  Serial.print(gEncoderPosition);
-//  Serial.print("  ");
-//  Serial.println(gStitch);
+  // debug print
+  //  Serial.print(gEncoderPosition);
+  //  Serial.print("  ");
+  //  Serial.println(gStitch);
 }
 
 // ------------- Calculate Direction and End Of Line  ---------------------------------
@@ -202,17 +199,17 @@ void gCalculateDirectionAndEndOfLine() {
   }
   
   // debug print
-//  Serial.print(gDirection);
-//  Serial.print("  ");
-//  Serial.print(gEndOfLine);
-//  Serial.print("  ");
-//  Serial.print(gLeft);
-//  Serial.print("  ");
-//  Serial.print(gRight);
-//  Serial.print("  ");
-//  Serial.print(gLeftSensorValue);
-//  Serial.print("  ");
-//  Serial.println(gRightSensorValue);
+  //  Serial.print(gDirection);
+  //  Serial.print("  ");
+  //  Serial.print(gEndOfLine);
+  //  Serial.print("  ");
+  //  Serial.print(gLeft);
+  //  Serial.print("  ");
+  //  Serial.print(gRight);
+  //  Serial.print("  ");
+  //  Serial.print(gLeftSensorValue);
+  //  Serial.print("  ");
+  //  Serial.println(gRightSensorValue);
 }
 
 // ------------- reset encoder position  ---------------------------------
@@ -245,40 +242,40 @@ void gCalculateStitch() {
 // --------------------- Set Solenoids  ---------------------------------
 void gSetSolenoids () {  
   
-    if( gPrevStitch != gStitch) { // if stitch has moved
-      // gPrevStitch = gStitch
+  if( gPrevStitch != gStitch) { // if stitch has moved
+    // gPrevStitch = gStitch
       
-      int stitchPosition = gStitch + 28;
-      int index = abs(stitchPosition) % 16;
+    int stitchPosition = gStitch + 28;
+    int index = abs(stitchPosition) % 16;
       
-      if(gDirection == -1){  // RIGHT direction 
-        int pixelsIndex = stitchPosition - 8; // -16
-        if((pixelsIndex>=0) && (pixelsIndex<254)){
-          int pixelValue = gPixels[pixelsIndex]; 
-          digitalWrite(gSolenoids[index],pixelValue);
-//          // debug print
-//          Serial.print(index);
-//          Serial.print("  ");
-//          Serial.print(pixelsIndex);
-//          Serial.print("  ");
-//          Serial.println(pixelValue);
-        }
-      } else if (gDirection == 1) {  // LEFT direction 
-        int pixelsIndex = stitchPosition - 40; // -48
-        if((pixelsIndex>=0) && (pixelsIndex<254)){
-          int pixelValue = gPixels[pixelsIndex]; 
-          digitalWrite(gSolenoids[index],pixelValue);
-//          // debug print
-//          Serial.print(index);
-//          Serial.print("  ");
-//          Serial.print(pixelsIndex);
-//          Serial.print("  ");
-//          Serial.println(pixelValue);
-        } 
-      } else {
-          digitalWrite(gSolenoids[index], LOW);// zero out all solenoids
+    if(gDirection == -1){  // RIGHT direction 
+      int pixelsIndex = stitchPosition - 8; // -16
+      if((pixelsIndex>=0) && (pixelsIndex<254)){
+	int pixelValue = gPixels[pixelsIndex]; 
+	digitalWrite(gSolenoids[index],pixelValue);
+	//          // debug print
+	//          Serial.print(index);
+	//          Serial.print("  ");
+	//          Serial.print(pixelsIndex);
+	//          Serial.print("  ");
+	//          Serial.println(pixelValue);
       }
-    } 
+    } else if (gDirection == 1) {  // LEFT direction 
+      int pixelsIndex = stitchPosition - 40; // -48
+      if((pixelsIndex>=0) && (pixelsIndex<254)){
+	int pixelValue = gPixels[pixelsIndex]; 
+	digitalWrite(gSolenoids[index],pixelValue);
+	//          // debug print
+	//          Serial.print(index);
+	//          Serial.print("  ");
+	//          Serial.print(pixelsIndex);
+	//          Serial.print("  ");
+	//          Serial.println(pixelValue);
+      } 
+    } else {
+      digitalWrite(gSolenoids[index], LOW);// zero out all solenoids
+    }
+  } 
 }
 
 // ------------- update Pixels Serial  ---------------------------------
