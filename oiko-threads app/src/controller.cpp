@@ -44,6 +44,7 @@ bool Controller::sendMsg(const cv::Mat& mat) {
     auto test = data.str();
     for (int i = 0; i< test.size(); ++i) {
       std::cout << test[i];
+      if ((i%8)==7) std::cout << " ";
       if ((i%16)==15) std::cout << std::endl;
     }
 #endif 
@@ -55,6 +56,22 @@ bool Controller::sendMsg(const cv::Mat& mat) {
     }
   }
 }
+
+bool Controller::sendMsg(const std::string& data) {
+  if (mFd == -1) {
+    helper::log
+      ("serial communication has been interrupted - pixels were not sent");
+    return false;
+  } else {
+    if (!arduino_lib::serialport_write(mFd, data.c_str()))
+      return true;
+    else {
+      helper::log("error sending the pixels to the machine");
+      return false;
+    }
+  }
+}
+
 
 // ============================= waitForMsg =============================
 bool Controller::waitForMsg() {

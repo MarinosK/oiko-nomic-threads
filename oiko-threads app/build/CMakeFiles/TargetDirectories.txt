@@ -1,3 +1,4 @@
+/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/stitch_test.dir
 /Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/RunTests.dir
 /Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/oiko-threads.dir
 /Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/oiko-threads-test.dir

@@ -66,42 +66,6 @@ helper.h
 mar_utils.h
 /Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/src/mar_utils.h
 
-/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/src/data.h
-fstream
--
-string
--
-sstream
--
-vector
--
-boost/logic/tribool.hpp
--
-helper.h
-/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/src/helper.h
-
-/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/src/decoration.h
-vector
--
-string
--
-sstream
--
-algorithm
--
-opencv2/opencv.hpp
--
-mar_utils.h
--
-boost/lexical_cast.hpp
--
-helper.h
-/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/src/helper.h
-data.h
-/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/src/data.h
-segment.h
-/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/src/segment.h
-
 /Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/src/helper.h
 iostream
 -
@@ -140,55 +104,11 @@ ip/UdpSocket.h
 arduino-serial-lib.h
 /Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/src/arduino-serial-lib.h
 
-/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/src/oiko-threads.cpp
+/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/src/stitch_test.cpp
 iostream
 -
-atomic
--
-thread
--
-helper.h
-/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/src/helper.h
-oikoThreadsApp.h
-/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/src/oikoThreadsApp.h
-
-/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/src/oikoThreadsApp.cpp
-oikoThreadsApp.h
-/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/src/oikoThreadsApp.h
-
-/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/src/oikoThreadsApp.h
-opencv2/opencv.hpp
--
-decoration.h
-/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/src/decoration.h
-helper.h
-/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/src/helper.h
-visualizer.h
-/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/src/visualizer.h
 controller.h
 /Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/src/controller.h
-
-/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/src/segment.h
-opencv2/opencv.hpp
--
-
-/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/src/visualizer.h
-string
--
-sstream
--
-ctime
--
-boost/lexical_cast.hpp
--
-opencv2/opencv.hpp
--
-opencv2/highgui/highgui.hpp
--
-helper.h
-/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/src/helper.h
-decoration.h
-/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/src/decoration.h
 
 /opt/local/include/boost/array.hpp
 boost/detail/workaround.hpp
@@ -1607,16 +1527,6 @@ limits
 -
 climits
 -
-
-/opt/local/include/boost/logic/tribool.hpp
-boost/logic/tribool_fwd.hpp
--
-boost/config.hpp
--
-boost/detail/workaround.hpp
--
-
-/opt/local/include/boost/logic/tribool_fwd.hpp
 
 /opt/local/include/boost/math/policies/policy.hpp
 boost/mpl/list.hpp

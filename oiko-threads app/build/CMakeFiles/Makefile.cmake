@@ -122,6 +122,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
+  "CMakeFiles/stitch_test.dir/DependInfo.cmake"
   "CMakeFiles/RunTests.dir/DependInfo.cmake"
   "CMakeFiles/oiko-threads.dir/DependInfo.cmake"
   "CMakeFiles/oiko-threads-test.dir/DependInfo.cmake"

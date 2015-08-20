@@ -28,31 +28,31 @@ The CXX compiler identification is AppleClang, found in "/Users/marinos/projects
 Determining if the C compiler works passed with the following output:
 Change Dir: /Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTryCompileExec1984257911/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec1984257911.dir/build.make CMakeFiles/cmTryCompileExec1984257911.dir/build
+Run Build Command:"/usr/bin/make" "cmTryCompileExec775773169/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec775773169.dir/build.make CMakeFiles/cmTryCompileExec775773169.dir/build
 /opt/local/bin/cmake -E cmake_progress_report "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/CMakeTmp/CMakeFiles" 1
-Building C object CMakeFiles/cmTryCompileExec1984257911.dir/testCCompiler.c.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -o CMakeFiles/cmTryCompileExec1984257911.dir/testCCompiler.c.o   -c "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/CMakeTmp/testCCompiler.c"
-Linking C executable cmTryCompileExec1984257911
-/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1984257911.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec1984257911.dir/testCCompiler.c.o  -o cmTryCompileExec1984257911  
+Building C object CMakeFiles/cmTryCompileExec775773169.dir/testCCompiler.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -o CMakeFiles/cmTryCompileExec775773169.dir/testCCompiler.c.o   -c "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/CMakeTmp/testCCompiler.c"
+Linking C executable cmTryCompileExec775773169
+/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec775773169.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec775773169.dir/testCCompiler.c.o  -o cmTryCompileExec775773169  
 
 
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: /Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTryCompileExec1310331204/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec1310331204.dir/build.make CMakeFiles/cmTryCompileExec1310331204.dir/build
+Run Build Command:"/usr/bin/make" "cmTryCompileExec1193042026/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec1193042026.dir/build.make CMakeFiles/cmTryCompileExec1193042026.dir/build
 /opt/local/bin/cmake -E cmake_progress_report "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/CMakeTmp/CMakeFiles" 1
-Building C object CMakeFiles/cmTryCompileExec1310331204.dir/CMakeCCompilerABI.c.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -o CMakeFiles/cmTryCompileExec1310331204.dir/CMakeCCompilerABI.c.o   -c /opt/local/share/cmake-3.2/Modules/CMakeCCompilerABI.c
-Linking C executable cmTryCompileExec1310331204
-/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1310331204.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTryCompileExec1310331204.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec1310331204   
+Building C object CMakeFiles/cmTryCompileExec1193042026.dir/CMakeCCompilerABI.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -o CMakeFiles/cmTryCompileExec1193042026.dir/CMakeCCompilerABI.c.o   -c /opt/local/share/cmake-3.2/Modules/CMakeCCompilerABI.c
+Linking C executable cmTryCompileExec1193042026
+/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1193042026.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTryCompileExec1193042026.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec1193042026   
 Apple LLVM version 6.1.0 (clang-602.0.53) (based on LLVM 3.6.0svn)
 Target: x86_64-apple-darwin14.5.0
 Thread model: posix
- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.10.0 -o cmTryCompileExec1310331204 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec1310331204.dir/CMakeCCompilerABI.c.o -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/6.1.0/lib/darwin/libclang_rt.osx.a
+ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.10.0 -o cmTryCompileExec1193042026 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec1193042026.dir/CMakeCCompilerABI.c.o -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/6.1.0/lib/darwin/libclang_rt.osx.a
 @(#)PROGRAM:ld  PROJECT:ld64-242.2
 configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7m armv7em
 Library search paths:
@@ -67,18 +67,18 @@ Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTryCompileExec1310331204/fast"]
-  ignore line: [/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec1310331204.dir/build.make CMakeFiles/cmTryCompileExec1310331204.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTryCompileExec1193042026/fast"]
+  ignore line: [/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec1193042026.dir/build.make CMakeFiles/cmTryCompileExec1193042026.dir/build]
   ignore line: [/opt/local/bin/cmake -E cmake_progress_report "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/CMakeTmp/CMakeFiles" 1]
-  ignore line: [Building C object CMakeFiles/cmTryCompileExec1310331204.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -o CMakeFiles/cmTryCompileExec1310331204.dir/CMakeCCompilerABI.c.o   -c /opt/local/share/cmake-3.2/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTryCompileExec1310331204]
-  ignore line: [/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1310331204.dir/link.txt --verbose=1]
-  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTryCompileExec1310331204.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec1310331204   ]
+  ignore line: [Building C object CMakeFiles/cmTryCompileExec1193042026.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -o CMakeFiles/cmTryCompileExec1193042026.dir/CMakeCCompilerABI.c.o   -c /opt/local/share/cmake-3.2/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTryCompileExec1193042026]
+  ignore line: [/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1193042026.dir/link.txt --verbose=1]
+  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTryCompileExec1193042026.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec1193042026   ]
   ignore line: [Apple LLVM version 6.1.0 (clang-602.0.53) (based on LLVM 3.6.0svn)]
   ignore line: [Target: x86_64-apple-darwin14.5.0]
   ignore line: [Thread model: posix]
-  link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.10.0 -o cmTryCompileExec1310331204 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec1310331204.dir/CMakeCCompilerABI.c.o -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/6.1.0/lib/darwin/libclang_rt.osx.a]
+  link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.10.0 -o cmTryCompileExec1193042026 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec1193042026.dir/CMakeCCompilerABI.c.o -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/6.1.0/lib/darwin/libclang_rt.osx.a]
     arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld] ==> ignore
     arg [-demangle] ==> ignore
     arg [-dynamic] ==> ignore
@@ -87,11 +87,11 @@ Parsed C implicit link information from above output:
     arg [-macosx_version_min] ==> ignore
     arg [10.10.0] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTryCompileExec1310331204] ==> ignore
+    arg [cmTryCompileExec1193042026] ==> ignore
     arg [-search_paths_first] ==> ignore
     arg [-headerpad_max_install_names] ==> ignore
     arg [-v] ==> ignore
-    arg [CMakeFiles/cmTryCompileExec1310331204.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTryCompileExec1193042026.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lSystem] ==> lib [System]
     arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/6.1.0/lib/darwin/libclang_rt.osx.a] ==> lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/6.1.0/lib/darwin/libclang_rt.osx.a]
   Library search paths: [;/usr/lib;/usr/local/lib]
@@ -112,14 +112,14 @@ Parsed C implicit link information from above output:
 Detecting C [-std=c11] compiler features compiled with the following output:
 Change Dir: /Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTryCompileExec4038033544/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec4038033544.dir/build.make CMakeFiles/cmTryCompileExec4038033544.dir/build
+Run Build Command:"/usr/bin/make" "cmTryCompileExec890566121/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec890566121.dir/build.make CMakeFiles/cmTryCompileExec890566121.dir/build
 /opt/local/bin/cmake -E cmake_progress_report "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/CMakeTmp/CMakeFiles" 1
-Building C object CMakeFiles/cmTryCompileExec4038033544.dir/feature_tests.c.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -std=c11 -o CMakeFiles/cmTryCompileExec4038033544.dir/feature_tests.c.o   -c "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/feature_tests.c"
-Linking C executable cmTryCompileExec4038033544
-/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec4038033544.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec4038033544.dir/feature_tests.c.o  -o cmTryCompileExec4038033544  
+Building C object CMakeFiles/cmTryCompileExec890566121.dir/feature_tests.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -std=c11 -o CMakeFiles/cmTryCompileExec890566121.dir/feature_tests.c.o   -c "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/feature_tests.c"
+Linking C executable cmTryCompileExec890566121
+/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec890566121.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec890566121.dir/feature_tests.c.o  -o cmTryCompileExec890566121  
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -131,14 +131,14 @@ Linking C executable cmTryCompileExec4038033544
 Detecting C [-std=c99] compiler features compiled with the following output:
 Change Dir: /Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTryCompileExec1619827028/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec1619827028.dir/build.make CMakeFiles/cmTryCompileExec1619827028.dir/build
+Run Build Command:"/usr/bin/make" "cmTryCompileExec2890275728/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec2890275728.dir/build.make CMakeFiles/cmTryCompileExec2890275728.dir/build
 /opt/local/bin/cmake -E cmake_progress_report "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/CMakeTmp/CMakeFiles" 1
-Building C object CMakeFiles/cmTryCompileExec1619827028.dir/feature_tests.c.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -std=c99 -o CMakeFiles/cmTryCompileExec1619827028.dir/feature_tests.c.o   -c "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/feature_tests.c"
-Linking C executable cmTryCompileExec1619827028
-/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1619827028.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec1619827028.dir/feature_tests.c.o  -o cmTryCompileExec1619827028  
+Building C object CMakeFiles/cmTryCompileExec2890275728.dir/feature_tests.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -std=c99 -o CMakeFiles/cmTryCompileExec2890275728.dir/feature_tests.c.o   -c "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/feature_tests.c"
+Linking C executable cmTryCompileExec2890275728
+/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2890275728.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec2890275728.dir/feature_tests.c.o  -o cmTryCompileExec2890275728  
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -150,14 +150,14 @@ Linking C executable cmTryCompileExec1619827028
 Detecting C [-std=c90] compiler features compiled with the following output:
 Change Dir: /Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTryCompileExec382099880/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec382099880.dir/build.make CMakeFiles/cmTryCompileExec382099880.dir/build
+Run Build Command:"/usr/bin/make" "cmTryCompileExec1003602009/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec1003602009.dir/build.make CMakeFiles/cmTryCompileExec1003602009.dir/build
 /opt/local/bin/cmake -E cmake_progress_report "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/CMakeTmp/CMakeFiles" 1
-Building C object CMakeFiles/cmTryCompileExec382099880.dir/feature_tests.c.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -std=c90 -o CMakeFiles/cmTryCompileExec382099880.dir/feature_tests.c.o   -c "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/feature_tests.c"
-Linking C executable cmTryCompileExec382099880
-/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec382099880.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec382099880.dir/feature_tests.c.o  -o cmTryCompileExec382099880  
+Building C object CMakeFiles/cmTryCompileExec1003602009.dir/feature_tests.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -std=c90 -o CMakeFiles/cmTryCompileExec1003602009.dir/feature_tests.c.o   -c "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/feature_tests.c"
+Linking C executable cmTryCompileExec1003602009
+/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1003602009.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec1003602009.dir/feature_tests.c.o  -o cmTryCompileExec1003602009  
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -167,31 +167,31 @@ Linking C executable cmTryCompileExec382099880
 Determining if the CXX compiler works passed with the following output:
 Change Dir: /Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTryCompileExec1458457821/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec1458457821.dir/build.make CMakeFiles/cmTryCompileExec1458457821.dir/build
+Run Build Command:"/usr/bin/make" "cmTryCompileExec1164064896/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec1164064896.dir/build.make CMakeFiles/cmTryCompileExec1164064896.dir/build
 /opt/local/bin/cmake -E cmake_progress_report "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/CMakeTmp/CMakeFiles" 1
-Building CXX object CMakeFiles/cmTryCompileExec1458457821.dir/testCXXCompiler.cxx.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -o CMakeFiles/cmTryCompileExec1458457821.dir/testCXXCompiler.cxx.o -c "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx"
-Linking CXX executable cmTryCompileExec1458457821
-/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1458457821.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec1458457821.dir/testCXXCompiler.cxx.o  -o cmTryCompileExec1458457821  
+Building CXX object CMakeFiles/cmTryCompileExec1164064896.dir/testCXXCompiler.cxx.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -o CMakeFiles/cmTryCompileExec1164064896.dir/testCXXCompiler.cxx.o -c "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx"
+Linking CXX executable cmTryCompileExec1164064896
+/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1164064896.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec1164064896.dir/testCXXCompiler.cxx.o  -o cmTryCompileExec1164064896  
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: /Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTryCompileExec4288823149/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec4288823149.dir/build.make CMakeFiles/cmTryCompileExec4288823149.dir/build
+Run Build Command:"/usr/bin/make" "cmTryCompileExec274227575/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec274227575.dir/build.make CMakeFiles/cmTryCompileExec274227575.dir/build
 /opt/local/bin/cmake -E cmake_progress_report "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/CMakeTmp/CMakeFiles" 1
-Building CXX object CMakeFiles/cmTryCompileExec4288823149.dir/CMakeCXXCompilerABI.cpp.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -o CMakeFiles/cmTryCompileExec4288823149.dir/CMakeCXXCompilerABI.cpp.o -c /opt/local/share/cmake-3.2/Modules/CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTryCompileExec4288823149
-/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec4288823149.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTryCompileExec4288823149.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec4288823149   
+Building CXX object CMakeFiles/cmTryCompileExec274227575.dir/CMakeCXXCompilerABI.cpp.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -o CMakeFiles/cmTryCompileExec274227575.dir/CMakeCXXCompilerABI.cpp.o -c /opt/local/share/cmake-3.2/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTryCompileExec274227575
+/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec274227575.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTryCompileExec274227575.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec274227575   
 Apple LLVM version 6.1.0 (clang-602.0.53) (based on LLVM 3.6.0svn)
 Target: x86_64-apple-darwin14.5.0
 Thread model: posix
- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.10.0 -o cmTryCompileExec4288823149 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec4288823149.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/6.1.0/lib/darwin/libclang_rt.osx.a
+ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.10.0 -o cmTryCompileExec274227575 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec274227575.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/6.1.0/lib/darwin/libclang_rt.osx.a
 @(#)PROGRAM:ld  PROJECT:ld64-242.2
 configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7m armv7em
 Library search paths:
@@ -206,18 +206,18 @@ Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTryCompileExec4288823149/fast"]
-  ignore line: [/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec4288823149.dir/build.make CMakeFiles/cmTryCompileExec4288823149.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTryCompileExec274227575/fast"]
+  ignore line: [/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec274227575.dir/build.make CMakeFiles/cmTryCompileExec274227575.dir/build]
   ignore line: [/opt/local/bin/cmake -E cmake_progress_report "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/CMakeTmp/CMakeFiles" 1]
-  ignore line: [Building CXX object CMakeFiles/cmTryCompileExec4288823149.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -o CMakeFiles/cmTryCompileExec4288823149.dir/CMakeCXXCompilerABI.cpp.o -c /opt/local/share/cmake-3.2/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [Linking CXX executable cmTryCompileExec4288823149]
-  ignore line: [/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec4288823149.dir/link.txt --verbose=1]
-  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTryCompileExec4288823149.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec4288823149   ]
+  ignore line: [Building CXX object CMakeFiles/cmTryCompileExec274227575.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -o CMakeFiles/cmTryCompileExec274227575.dir/CMakeCXXCompilerABI.cpp.o -c /opt/local/share/cmake-3.2/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTryCompileExec274227575]
+  ignore line: [/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec274227575.dir/link.txt --verbose=1]
+  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTryCompileExec274227575.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec274227575   ]
   ignore line: [Apple LLVM version 6.1.0 (clang-602.0.53) (based on LLVM 3.6.0svn)]
   ignore line: [Target: x86_64-apple-darwin14.5.0]
   ignore line: [Thread model: posix]
-  link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.10.0 -o cmTryCompileExec4288823149 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec4288823149.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/6.1.0/lib/darwin/libclang_rt.osx.a]
+  link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.10.0 -o cmTryCompileExec274227575 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec274227575.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/6.1.0/lib/darwin/libclang_rt.osx.a]
     arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld] ==> ignore
     arg [-demangle] ==> ignore
     arg [-dynamic] ==> ignore
@@ -226,11 +226,11 @@ Parsed CXX implicit link information from above output:
     arg [-macosx_version_min] ==> ignore
     arg [10.10.0] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTryCompileExec4288823149] ==> ignore
+    arg [cmTryCompileExec274227575] ==> ignore
     arg [-search_paths_first] ==> ignore
     arg [-headerpad_max_install_names] ==> ignore
     arg [-v] ==> ignore
-    arg [CMakeFiles/cmTryCompileExec4288823149.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTryCompileExec274227575.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lc++] ==> lib [c++]
     arg [-lSystem] ==> lib [System]
     arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/6.1.0/lib/darwin/libclang_rt.osx.a] ==> lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/6.1.0/lib/darwin/libclang_rt.osx.a]
@@ -252,14 +252,14 @@ Parsed CXX implicit link information from above output:
 Detecting CXX [-std=c++1y] compiler features compiled with the following output:
 Change Dir: /Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTryCompileExec2764781805/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec2764781805.dir/build.make CMakeFiles/cmTryCompileExec2764781805.dir/build
+Run Build Command:"/usr/bin/make" "cmTryCompileExec3018374394/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec3018374394.dir/build.make CMakeFiles/cmTryCompileExec3018374394.dir/build
 /opt/local/bin/cmake -E cmake_progress_report "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/CMakeTmp/CMakeFiles" 1
-Building CXX object CMakeFiles/cmTryCompileExec2764781805.dir/feature_tests.cxx.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -std=c++1y -o CMakeFiles/cmTryCompileExec2764781805.dir/feature_tests.cxx.o -c "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/feature_tests.cxx"
-Linking CXX executable cmTryCompileExec2764781805
-/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2764781805.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec2764781805.dir/feature_tests.cxx.o  -o cmTryCompileExec2764781805  
+Building CXX object CMakeFiles/cmTryCompileExec3018374394.dir/feature_tests.cxx.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -std=c++1y -o CMakeFiles/cmTryCompileExec3018374394.dir/feature_tests.cxx.o -c "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/feature_tests.cxx"
+Linking CXX executable cmTryCompileExec3018374394
+/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3018374394.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec3018374394.dir/feature_tests.cxx.o  -o cmTryCompileExec3018374394  
 
 
     Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
@@ -324,14 +324,14 @@ Linking CXX executable cmTryCompileExec2764781805
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
 Change Dir: /Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTryCompileExec1755722246/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec1755722246.dir/build.make CMakeFiles/cmTryCompileExec1755722246.dir/build
+Run Build Command:"/usr/bin/make" "cmTryCompileExec4023159854/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec4023159854.dir/build.make CMakeFiles/cmTryCompileExec4023159854.dir/build
 /opt/local/bin/cmake -E cmake_progress_report "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/CMakeTmp/CMakeFiles" 1
-Building CXX object CMakeFiles/cmTryCompileExec1755722246.dir/feature_tests.cxx.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTryCompileExec1755722246.dir/feature_tests.cxx.o -c "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/feature_tests.cxx"
-Linking CXX executable cmTryCompileExec1755722246
-/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1755722246.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec1755722246.dir/feature_tests.cxx.o  -o cmTryCompileExec1755722246  
+Building CXX object CMakeFiles/cmTryCompileExec4023159854.dir/feature_tests.cxx.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTryCompileExec4023159854.dir/feature_tests.cxx.o -c "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/feature_tests.cxx"
+Linking CXX executable cmTryCompileExec4023159854
+/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec4023159854.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec4023159854.dir/feature_tests.cxx.o  -o cmTryCompileExec4023159854  
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
@@ -396,14 +396,14 @@ Linking CXX executable cmTryCompileExec1755722246
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
 Change Dir: /Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTryCompileExec1850951923/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec1850951923.dir/build.make CMakeFiles/cmTryCompileExec1850951923.dir/build
+Run Build Command:"/usr/bin/make" "cmTryCompileExec1006730805/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec1006730805.dir/build.make CMakeFiles/cmTryCompileExec1006730805.dir/build
 /opt/local/bin/cmake -E cmake_progress_report "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/CMakeTmp/CMakeFiles" 1
-Building CXX object CMakeFiles/cmTryCompileExec1850951923.dir/feature_tests.cxx.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTryCompileExec1850951923.dir/feature_tests.cxx.o -c "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/feature_tests.cxx"
-Linking CXX executable cmTryCompileExec1850951923
-/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1850951923.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec1850951923.dir/feature_tests.cxx.o  -o cmTryCompileExec1850951923  
+Building CXX object CMakeFiles/cmTryCompileExec1006730805.dir/feature_tests.cxx.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTryCompileExec1006730805.dir/feature_tests.cxx.o -c "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles/feature_tests.cxx"
+Linking CXX executable cmTryCompileExec1006730805
+/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1006730805.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec1006730805.dir/feature_tests.cxx.o  -o cmTryCompileExec1006730805  
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers

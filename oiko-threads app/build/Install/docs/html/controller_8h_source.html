@@ -99,43 +99,45 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;sstream&gt;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;opencv2/opencv.hpp&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;arduino-serial-lib.h&quot;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;helper.h&quot;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#ifdef DEBUG</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;mar_utils.h&quot;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#endif </span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;std::ostringstream&amp; operator&lt;&lt; (std::ostringstream&amp;, <span class="keyword">const</span> cv::Mat&amp;);</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="class_controller.html">   23</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_controller.html">Controller</a> {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;  <span class="keyword">static</span> <span class="keyword">const</span> std::string arduinoID; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;  <span class="keyword">static</span> constexpr <span class="keywordtype">int</span> mBaudRate {<a class="code" href="namespacesettings.html#aef5cfd3e33e0a69ec281dbebea3e6610">settings::baudRate</a>};</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  <span class="keywordtype">int</span> mFd; <span class="comment">// the serial file</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="class_controller.html#a9f32eed3fcd3e46535b176fcef6cd031">sendMsg</a>(<span class="keyword">const</span> cv::Mat&amp;);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="class_controller.html#a9e7e1fbc2efd80e40529cf10a2138a45">waitForMsg</a>(); <span class="comment">// read message</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment"></span>  <a class="code" href="class_controller.html#a95c56822d667e94b031451729ce069a9">Controller</a>(); <span class="comment">// Ctor</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment"></span>  <a class="code" href="class_controller.html#a0ab87934c4f7a266cfdb86e0f36bc1b5">~Controller</a>(); <span class="comment">// Dtor</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  <a class="code" href="class_controller.html#a95c56822d667e94b031451729ce069a9">Controller</a>(<span class="keyword">const</span> <a class="code" href="class_controller.html">Controller</a>&amp;) =<span class="keyword">delete</span>; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  <a class="code" href="class_controller.html#a95c56822d667e94b031451729ce069a9">Controller</a>(<a class="code" href="class_controller.html">Controller</a>&amp;&amp;) =<span class="keyword">delete</span>; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  <a class="code" href="class_controller.html">Controller</a>&amp; operator= (<span class="keyword">const</span> <a class="code" href="class_controller.html">Controller</a>&amp;) =<span class="keyword">delete</span>; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  <a class="code" href="class_controller.html">Controller</a>&amp; operator= (<a class="code" href="class_controller.html">Controller</a>&amp;&amp;) =<span class="keyword">delete</span>; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;};</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* _CONTROLLER_H */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;arduino-serial-lib.h&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;helper.h&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#ifdef DEBUG</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;mar_utils.h&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#endif </span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;std::ostringstream&amp; operator&lt;&lt; (std::ostringstream&amp;, <span class="keyword">const</span> cv::Mat&amp;);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="class_controller.html">   24</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_controller.html">Controller</a> {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;  <span class="keyword">static</span> <span class="keyword">const</span> std::string arduinoID; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  <span class="keyword">static</span> constexpr <span class="keywordtype">int</span> mBaudRate {<a class="code" href="namespacesettings.html#aef5cfd3e33e0a69ec281dbebea3e6610">settings::baudRate</a>};</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  <span class="keywordtype">int</span> mFd; <span class="comment">// the serial file</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="class_controller.html#a9f32eed3fcd3e46535b176fcef6cd031">sendMsg</a>(<span class="keyword">const</span> cv::Mat&amp;);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="class_controller.html#a9f32eed3fcd3e46535b176fcef6cd031">sendMsg</a>(<span class="keyword">const</span> std::string&amp;);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="class_controller.html#a9e7e1fbc2efd80e40529cf10a2138a45">waitForMsg</a>(); <span class="comment">// read message</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment"></span>  <a class="code" href="class_controller.html#a95c56822d667e94b031451729ce069a9">Controller</a>(); <span class="comment">// Ctor</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment"></span>  <a class="code" href="class_controller.html#a0ab87934c4f7a266cfdb86e0f36bc1b5">~Controller</a>(); <span class="comment">// Dtor</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  <a class="code" href="class_controller.html#a95c56822d667e94b031451729ce069a9">Controller</a>(<span class="keyword">const</span> <a class="code" href="class_controller.html">Controller</a>&amp;) =<span class="keyword">delete</span>; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <a class="code" href="class_controller.html#a95c56822d667e94b031451729ce069a9">Controller</a>(<a class="code" href="class_controller.html">Controller</a>&amp;&amp;) =<span class="keyword">delete</span>; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <a class="code" href="class_controller.html">Controller</a>&amp; operator= (<span class="keyword">const</span> <a class="code" href="class_controller.html">Controller</a>&amp;) =<span class="keyword">delete</span>; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <a class="code" href="class_controller.html">Controller</a>&amp; operator= (<a class="code" href="class_controller.html">Controller</a>&amp;&amp;) =<span class="keyword">delete</span>; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;};</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* _CONTROLLER_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
 <div class="ttc" id="class_controller_html_a95c56822d667e94b031451729ce069a9"><div class="ttname"><a href="class_controller.html#a95c56822d667e94b031451729ce069a9">Controller::Controller</a></div><div class="ttdeci">Controller()</div><div class="ttdoc">constructor </div><div class="ttdef"><b>Definition:</b> controller.cpp:8</div></div>
-<div class="ttc" id="class_controller_html_a9f32eed3fcd3e46535b176fcef6cd031"><div class="ttname"><a href="class_controller.html#a9f32eed3fcd3e46535b176fcef6cd031">Controller::sendMsg</a></div><div class="ttdeci">bool sendMsg(const cv::Mat &amp;)</div><div class="ttdoc">send a knitting pattern to the machine </div><div class="ttdef"><b>Definition:</b> controller.cpp:30</div></div>
+<div class="ttc" id="class_controller_html_a9f32eed3fcd3e46535b176fcef6cd031"><div class="ttname"><a href="class_controller.html#a9f32eed3fcd3e46535b176fcef6cd031">Controller::sendMsg</a></div><div class="ttdeci">bool sendMsg(const cv::Mat &amp;)</div><div class="ttdoc">send a knitting pattern (as cv::Mat) to the machine </div><div class="ttdef"><b>Definition:</b> controller.cpp:30</div></div>
 <div class="ttc" id="class_controller_html_a0ab87934c4f7a266cfdb86e0f36bc1b5"><div class="ttname"><a href="class_controller.html#a0ab87934c4f7a266cfdb86e0f36bc1b5">Controller::~Controller</a></div><div class="ttdeci">~Controller()</div><div class="ttdoc">destructor </div><div class="ttdef"><b>Definition:</b> controller.cpp:16</div></div>
-<div class="ttc" id="class_controller_html"><div class="ttname"><a href="class_controller.html">Controller</a></div><div class="ttdoc">Controller is responsible for all IO communication with the knitting machine. </div><div class="ttdef"><b>Definition:</b> controller.h:23</div></div>
+<div class="ttc" id="class_controller_html"><div class="ttname"><a href="class_controller.html">Controller</a></div><div class="ttdoc">Controller is responsible for all IO communication with the knitting machine. </div><div class="ttdef"><b>Definition:</b> controller.h:24</div></div>
 <div class="ttc" id="namespacesettings_html_aef5cfd3e33e0a69ec281dbebea3e6610"><div class="ttname"><a href="namespacesettings.html#aef5cfd3e33e0a69ec281dbebea3e6610">settings::baudRate</a></div><div class="ttdeci">constexpr unsigned baudRate</div><div class="ttdoc">default baud rate </div><div class="ttdef"><b>Definition:</b> helper.h:52</div></div>
-<div class="ttc" id="class_controller_html_a9e7e1fbc2efd80e40529cf10a2138a45"><div class="ttname"><a href="class_controller.html#a9e7e1fbc2efd80e40529cf10a2138a45">Controller::waitForMsg</a></div><div class="ttdeci">bool waitForMsg()</div><div class="ttdoc">wait for the machine to respond </div><div class="ttdef"><b>Definition:</b> controller.cpp:60</div></div>
+<div class="ttc" id="class_controller_html_a9e7e1fbc2efd80e40529cf10a2138a45"><div class="ttname"><a href="class_controller.html#a9e7e1fbc2efd80e40529cf10a2138a45">Controller::waitForMsg</a></div><div class="ttdeci">bool waitForMsg()</div><div class="ttdoc">wait for the machine to respond </div><div class="ttdef"><b>Definition:</b> controller.cpp:77</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Aug 20 2015 17:32:34 for Oiko-nomic Threads by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Aug 20 2015 19:16:14 for Oiko-nomic Threads by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

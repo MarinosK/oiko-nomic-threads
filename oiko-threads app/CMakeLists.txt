@@ -17,7 +17,8 @@ set (APP_SOURCES   src/oiko-threads.cpp
 	           src/oikoThreadsApp.cpp)
 set (TEST_SOURCES  src/tests.cpp
                    lib/gmock-all.cc
-		   lib/gtest-all.cc)		 
+		   lib/gtest-all.cc)
+set (STITCH_SOURCES   src/stitch_test.cpp)
 include_directories(  /opt/local/include
 		      /usr/local/include
 		      /usr/local/include/gmock
@@ -125,6 +126,11 @@ endif()
 # oiko-threads app
 add_executable(oiko-threads ${APP_SOURCES})
 target_link_libraries(oiko-threads core)
+#target_link_libraries(oiko-threads ${OpenCV_LIBS})
+
+# stitch_test
+add_executable(stitch_test ${STITCH_SOURCES})
+target_link_libraries(stitch_test core)
 #target_link_libraries(oiko-threads ${OpenCV_LIBS})
 
 

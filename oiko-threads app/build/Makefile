@@ -207,6 +207,19 @@ oiko-threads-test/fast:
 	$(MAKE) -f CMakeFiles/oiko-threads-test.dir/build.make CMakeFiles/oiko-threads-test.dir/build
 .PHONY : oiko-threads-test/fast
 
+#=============================================================================
+# Target rules for targets named stitch_test
+
+# Build rule for target.
+stitch_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 stitch_test
+.PHONY : stitch_test
+
+# fast build rule for target.
+stitch_test/fast:
+	$(MAKE) -f CMakeFiles/stitch_test.dir/build.make CMakeFiles/stitch_test.dir/build
+.PHONY : stitch_test/fast
+
 lib/arduino-serial-lib.o: lib/arduino-serial-lib.cpp.o
 .PHONY : lib/arduino-serial-lib.o
 
@@ -447,6 +460,30 @@ src/segment.cpp.s:
 	$(MAKE) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/src/segment.cpp.s
 .PHONY : src/segment.cpp.s
 
+src/stitch_test.o: src/stitch_test.cpp.o
+.PHONY : src/stitch_test.o
+
+# target to build an object file
+src/stitch_test.cpp.o:
+	$(MAKE) -f CMakeFiles/stitch_test.dir/build.make CMakeFiles/stitch_test.dir/src/stitch_test.cpp.o
+.PHONY : src/stitch_test.cpp.o
+
+src/stitch_test.i: src/stitch_test.cpp.i
+.PHONY : src/stitch_test.i
+
+# target to preprocess a source file
+src/stitch_test.cpp.i:
+	$(MAKE) -f CMakeFiles/stitch_test.dir/build.make CMakeFiles/stitch_test.dir/src/stitch_test.cpp.i
+.PHONY : src/stitch_test.cpp.i
+
+src/stitch_test.s: src/stitch_test.cpp.s
+.PHONY : src/stitch_test.s
+
+# target to generate assembly for a file
+src/stitch_test.cpp.s:
+	$(MAKE) -f CMakeFiles/stitch_test.dir/build.make CMakeFiles/stitch_test.dir/src/stitch_test.cpp.s
+.PHONY : src/stitch_test.cpp.s
+
 src/tests.o: src/tests.cpp.o
 .PHONY : src/tests.o
 
@@ -502,6 +539,7 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install/strip"
+	@echo "... stitch_test"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... RunTests"
@@ -542,6 +580,9 @@ help:
 	@echo "... src/segment.o"
 	@echo "... src/segment.i"
 	@echo "... src/segment.s"
+	@echo "... src/stitch_test.o"
+	@echo "... src/stitch_test.i"
+	@echo "... src/stitch_test.s"
 	@echo "... src/tests.o"
 	@echo "... src/tests.i"
 	@echo "... src/tests.s"

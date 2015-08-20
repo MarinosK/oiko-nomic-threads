@@ -56,9 +56,9 @@ CMAKE_BINARY_DIR = "/Users/marinos/projects/finished/oiko-nomic-threads code/oik
 # Target rules for target CMakeFiles/RunTests.dir
 
 # All Build rule for target.
+CMakeFiles/RunTests.dir/all: CMakeFiles/doc.dir/all
 CMakeFiles/RunTests.dir/all: CMakeFiles/oiko-threads.dir/all
 CMakeFiles/RunTests.dir/all: CMakeFiles/oiko-threads-test.dir/all
-CMakeFiles/RunTests.dir/all: CMakeFiles/doc.dir/all
 	$(MAKE) -f CMakeFiles/RunTests.dir/build.make CMakeFiles/RunTests.dir/depend
 	$(MAKE) -f CMakeFiles/RunTests.dir/build.make CMakeFiles/RunTests.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles"  1
@@ -227,6 +227,41 @@ CMakeFiles/oiko-threads-test.dir/clean:
 
 # clean rule for target.
 clean: CMakeFiles/oiko-threads-test.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/stitch_test.dir
+
+# All Build rule for target.
+CMakeFiles/stitch_test.dir/all: CMakeFiles/core.dir/all
+	$(MAKE) -f CMakeFiles/stitch_test.dir/build.make CMakeFiles/stitch_test.dir/depend
+	$(MAKE) -f CMakeFiles/stitch_test.dir/build.make CMakeFiles/stitch_test.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles"  15
+	@echo "Built target stitch_test"
+.PHONY : CMakeFiles/stitch_test.dir/all
+
+# Include target in all.
+all: CMakeFiles/stitch_test.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/stitch_test.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles" 8
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/stitch_test.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/CMakeFiles" 0
+.PHONY : CMakeFiles/stitch_test.dir/rule
+
+# Convenience name for target.
+stitch_test: CMakeFiles/stitch_test.dir/rule
+.PHONY : stitch_test
+
+# clean rule for target.
+CMakeFiles/stitch_test.dir/clean:
+	$(MAKE) -f CMakeFiles/stitch_test.dir/build.make CMakeFiles/stitch_test.dir/clean
+.PHONY : CMakeFiles/stitch_test.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/stitch_test.dir/clean
 .PHONY : clean
 
 #=============================================================================

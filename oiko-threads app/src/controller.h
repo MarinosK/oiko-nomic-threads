@@ -9,6 +9,7 @@
 
 #include <sstream>
 #include <opencv2/opencv.hpp>
+#include <string>
 #include "arduino-serial-lib.h"
 #include "helper.h"
 
@@ -26,8 +27,10 @@ class Controller {
   static constexpr int mBaudRate {settings::baudRate};
   int mFd; // the serial file
  public:
-  /// send a knitting pattern to the machine
+  /// send a knitting pattern (as cv::Mat) to the machine
   bool sendMsg(const cv::Mat&);
+  /// send a knitting pattern (as std::string) to the machine
+  bool sendMsg(const std::string&);
   /// wait for the machine to respond
   bool waitForMsg(); // read message
   /// constructor
