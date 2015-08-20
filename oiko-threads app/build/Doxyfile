@@ -1,0 +1,13 @@
+PROJECT_NAME           = "Oiko-nomic Threads"
+STRIP_FROM_PATH        = /Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app \
+                         /Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build
+INPUT                  =  \
+                         "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/src" \
+                         /Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build
+OUTPUT_DIRECTORY       = "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/build/Install/docs"
+FILE_PATTERNS          = *.h \
+                         *.cpp
+EXCLUDE                = "/Users/marinos/projects/finished/oiko-nomic-threads code/oiko-threads app/src/tests.cpp"
+GENERATE_LATEX         = NO
+RECURSIVE              = YES
+USE_MDFILE_AS_MAINPAGE = 

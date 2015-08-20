@@ -18,11 +18,11 @@ Controller::~Controller() {
 }
 
 // ============================= operator<< =============================
-std::ostringstream& operator<< (std::ostringstream& os, cv::Mat& mat) {
+std::ostringstream& operator<< (std::ostringstream& os, const cv::Mat& mat) {
   for (int i = 0; i< mat.cols; ++i) {
     uchar bit {mat.at<uchar>(0, i)};
     if (bit==0) os << 0; else os << 1;
-  } 
+  }
   return os;
 }
 
@@ -37,6 +37,16 @@ bool Controller::sendMsg(const cv::Mat& mat) {
   } else {
     std::ostringstream data{};
     data << mat;
+#ifdef DEBUG
+    //DEBUG_PRINT(data.str().c_str());
+    std::cout << "sending the folowing stitch-pattern to the machine:"
+	      << std::endl;
+    auto test = data.str();
+    for (int i = 0; i< test.size(); ++i) {
+      std::cout << test[i];
+      if ((i%16)==15) std::cout << std::endl;
+    }
+#endif 
     if (!arduino_lib::serialport_write(mFd, data.str().c_str()))
       return true;
     else {

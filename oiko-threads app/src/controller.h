@@ -12,8 +12,12 @@
 #include "arduino-serial-lib.h"
 #include "helper.h"
 
+#ifdef DEBUG
+#include "mar_utils.h"
+#endif 
+
 /// overloaded operator<< (reads pixels from a cv::mat to an ostream)
-std::ostringstream& operator<< (std::ostringstream&, cv::Mat&);
+std::ostringstream& operator<< (std::ostringstream&, const cv::Mat&);
 
 /// Controller is responsible for all IO communication with the knitting machine 
 class Controller {
